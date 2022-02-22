@@ -1,0 +1,41 @@
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://jonathanvoss:@localhost:5432/jonathanvoss"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Cue {
+  id          Int      @id @default(autoincrement())
+  documentId  Int
+  Document    Document @relation(fields: [documentId], references: [id])
+  name        String
+  description String
+  notes       String
+  timeBegin   Int
+  timeEnd     Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+}
+
+model Document {
+  id        Int      @id @default(autoincrement())
+  name      String
+  cues      Cue[]
+  users     User[]   @relation(references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now())
+  docuemnts Document[]
+
+}
