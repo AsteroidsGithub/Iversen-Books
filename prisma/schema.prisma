@@ -7,62 +7,76 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum wordLevel {
-  newDecodable
-  previouslyDecodable
-  newHighFrequency
-  previouslyHighFrequency
-  contextional
+enum UserType {
+  Admin
+  Publisher
+  Teacher
+  Student
 }
 
-model Book {
-  id                Int    @id @default(autoincrement())
-  title             String
-  interventionLevel Float
-  wordCount         Int
-  phonicSkill       String
-  hfWords           String
-
-  StudentBook     StudentBook[]
-  StudentProgress StudentProgress[]
+model User {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  type      UserType
 }
 
-model StudentProgress {
-  id        Int @id @default(autoincrement())
-  bookId    Int
-  studentId Int
-  teacherId Int
+// enum wordLevel {
+//   newDecodable
+//   previouslyDecodable
+//   newHighFrequency
+//   previouslyHighFrequency
+//   contextional
+// }
 
-  student Student @relation(fields: [studentId], references: [id])
-  teacher Teacher @relation(fields: [teacherId], references: [id])
-  Book    Book    @relation(fields: [bookId], references: [id])
+// model Book {
+//   id                Int    @id @default(autoincrement())
+//   title             String
+//   interventionLevel Float
+//   wordCount         Int
+//   phonicSkill       String
+//   hfWords           String
 
-}
+//   StudentBook     StudentBook[]
+//   StudentProgress StudentProgress[]
+// }
 
-model StudentBook {
-  id         Int      @id @default(autoincrement())
-  bookId     Int
-  studentId  Int
-  Book       Book     @relation(fields: [bookId], references: [id])
-  Student    Student  @relation(fields: [studentId], references: [id])
-  lastOpened DateTime @default(now())
-  createdAt  DateTime @default(now())
-}
+// model StudentProgress {
+//   id        Int @id @default(autoincrement())
+//   bookId    Int
+//   studentId Int
+//   teacherId Int
 
-model Student {
-  id              Int               @id @default(autoincrement())
-  teacherId       Int?
-  firstName       String
-  lastName        String
-  Teacher         Teacher?          @relation(fields: [teacherId], references: [id])
-  books           StudentBook[]
-  StudentProgress StudentProgress[]
-}
+//   student Student @relation(fields: [studentId], references: [id])
+//   teacher Teacher @relation(fields: [teacherId], references: [id])
+//   Book    Book    @relation(fields: [bookId], references: [id])
 
-model Teacher {
-  id              Int               @id @default(autoincrement())
-  firstName       String
-  lastName        String
-  students        Student[]
-  StudentProgress StudentProgress[]
-}
+// }
+
+// model StudentBook {
+//   id         Int      @id @default(autoincrement())
+//   bookId     Int
+//   studentId  Int
+//   Book       Book     @relation(fields: [bookId], references: [id])
+//   Student    Student  @relation(fields: [studentId], references: [id])
+//   lastOpened DateTime @default(now())
+//   createdAt  DateTime @default(now())
+// }
+
+// model Student {
+//   id              Int               @id @default(autoincrement())
+//   teacherId       Int?
+//   firstName       String
+//   lastName        String
+//   Teacher         Teacher?          @relation(fields: [teacherId], references: [id])
+//   books           StudentBook[]
+//   StudentProgress StudentProgress[]
+// }
+
+// model Teacher {
+//   id              Int               @id @default(autoincrement())
+//   firstName       String
+//   lastName        String
+//   students        Student[]
+//   StudentProgress StudentProgress[]
+// }
