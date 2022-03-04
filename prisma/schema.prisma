@@ -7,7 +7,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-enum UserType {
+enum UserRole {
   Admin
   Publisher
   Teacher
@@ -15,10 +15,12 @@ enum UserType {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  firstName String
-  lastName  String
-  type      UserType
+  id          Int        @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  password    String
+  permissions UserRole[]
 }
 
 // enum wordLevel {

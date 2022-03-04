@@ -1,17 +1,18 @@
+import { UserRole } from "@prisma/client";
+
 export interface User {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  permissions: UserRole[];
 }
 
-export type AuthencationRoles = {
-  admin: Boolean | undefined;
-  publisher: Boolean | undefined;
-  teacher: Boolean | undefined;
-  student: Boolean | undefined;
-};
+export interface AuthenticationToken {
+  id: number;
+  expiry: number;
+}
 
 export interface AuthenticatedUser extends User {
-  roles: AuthencationRoles;
   password: string;
 }
