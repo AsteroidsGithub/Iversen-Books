@@ -14,7 +14,7 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log(context.req.cookies);
-  const user = await checkAuth(context.req.cookies.token);
+  const user = await checkAuth(context.req.cookies.auth);
 
   if (!user) return { redirect: { destination: "/" }, props: {} };
 
