@@ -13,7 +13,28 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        "incremental": true
+        "incremental": true,
+        "baseUrl": "./",
+        "paths": {
+            "@Components/*": [
+                "./components/*"
+            ],
+            "@Interfaces/*": [
+                "./interfaces/*"
+            ],
+            "@Middleware/*": [
+                "./middleware/*"
+            ],
+            "@Prisma/*": [
+                "./prisma/*"
+            ],
+            "@TabbedPages/*": [
+                "./tabbedPages/*"
+            ],
+            "@Utilities/*": [
+                "./utilities/*"
+            ],
+        }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/socket.ts"],
     "exclude": ["node_modules"]
