@@ -1,9 +1,8 @@
 import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
-import { io, Socket } from 'socket.io-client';
+import { io } from "socket.io-client";
 import jwt from 'jsonwebtoken';
-import { useRouter } from 'next/router';
-import axios from 'axios';
+import { useRouter } from "next/router";
 
 const Document: NextPage = ({}) => {
     const router = useRouter();

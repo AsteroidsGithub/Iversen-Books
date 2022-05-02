@@ -1,48 +1,15 @@
-import type { GetServerSideProps, NextPage } from "next";
 import React from "react";
-import { User } from "../interfaces/users";
-import checkAuth from "../utilities/checkAuth";
+import type { GetServerSideProps, NextPage } from "next";
+import { User } from "@Interfaces/users";
+import checkAuth from "@Utilities/checkAuth";
 
-type NextTabbedPage = {
-    name: string;
-    Page: React.FC;
-};
+import TabButton from "@Components/TabButton";
+import { NextTabbedPage } from "@Interfaces/next";
 
-const TabButton: React.FC<{
-    isActive: Boolean;
-    onClick: () => void;
-}> = ({ children, isActive, onClick, ...props }) => (
-    <div
-        onClick={onClick}
-        className={`group mx-10 flex h-full w-full flex-grow  rounded py-2.5 ${
-            isActive && " border-b-4 border-blue-500"
-        } ${props}`}
-    >
-        <p
-            className={`h-full w-full text-center text-lg font-medium ${
-                isActive && "text-xl font-bold"
-            }`}
-        >
-            {children}
-        </p>
-    </div>
-);
+import Books from "@TabbedPages/books";
+import Reports from "@TabbedPages/reports";
 
-// const TabbedPage1: NextTabbedPage = {
-//     name: "Tabbed Page",
-//     components: () => <div>Tabbed Page 1</div>,
-// };
-
-const tabs: NextTabbedPage[] = [
-    {
-        name: "Books",
-        Page: () => <div>Tabbed Page 1</div>,
-    },
-    {
-        name: "Reports",
-        Page: () => <div>Tabbed Page 2</div>,
-    },
-];
+const tabs: NextTabbedPage[] = [Books, Reports];
 
 const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
     const [activeTab, setActiveTab] = React.useState<{

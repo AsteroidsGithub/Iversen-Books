@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
-import { useCookies } from "react-cookie";
 
 const loginUser = (
   res: NextApiResponse
