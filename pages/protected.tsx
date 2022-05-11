@@ -18,21 +18,18 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
         0: true,
         1: false,
     });
+
     return (
         <div>
-            <div className="inline-flex h-auto w-full flex-col items-start justify-start bg-white bg-opacity-90 px-5 pt-10 ">
-                <div className="flex w-full flex-col items-start justify-start space-y-3">
-                    <div className="flex w-full items-stretch space-x-4 px-6">
-                        <p className="flex-grow font-serif text-4xl font-normal">
-                            Iverson Publishing App
-                        </p>
+            <div className="inline-flex h-auto w-full flex-col items-start justify-start bg-white bg-opacity-90 px-5 pt-6 ">
+                <div className=" grid w-full grid-cols-2 grid-rows-2  lg:grid-cols-3 lg:grid-rows-1 ">
+                    <h1 className="col-start-1 row-start-1 self-center text-3xl text-black">
+                        Books
+                    </h1>
 
-                        <img
-                            className=" h-full w-auto rounded-full"
-                            src="https://via.placeholder.com/43x43"
-                        />
-                    </div>
-                    <div className="flex w-full">
+                    <div className="col-start-2 row-start-1 h-12 w-12 justify-self-end rounded-full bg-gray-200 lg:col-start-3"></div>
+
+                    <div className="col-span-full row-start-2 flex w-full space-x-2 lg:col-span-1 lg:col-start-2 lg:row-start-1">
                         {tabs.map((tab, index) => (
                             <TabButton
                                 key={index}
@@ -49,11 +46,13 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
                     </div>
                 </div>
             </div>
-            {tabs
-                .filter((tab, index) => activeTab[index])
-                .map(({ Page }, index) => (
-                    <Page key={index} />
-                ))}
+            <div className="h-full w-full">
+                {tabs
+                    .filter((tab, index) => activeTab[index])
+                    .map(({ Page }, index) => (
+                        <Page key={index} />
+                    ))}
+            </div>
         </div>
     );
 };
@@ -61,7 +60,10 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const user = await checkAuth(context.req.cookies.auth);
 
-    if (!user) return { redirect: { destination: "/" }, props: {} };
+    if (!user) {
+        console.log("Blocked access to protected page");
+        return { redirect: { destination: "/" }, props: {} };
+    }
 
     return {
         props: {

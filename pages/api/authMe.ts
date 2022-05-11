@@ -22,14 +22,14 @@ const loginUser = (
 
     // Set auth cookie to JWT
     const cookie = res.setHeader(
-      "Set-Cookie",
-      serialize("auth", token, {
-        httpOnly: true,
-        expires: exp,
-        sameSite: "strict",
-        secure: true,
-        path: "/",
-      })
+        "Set-Cookie",
+        serialize("auth", token, {
+            httpOnly: true,
+            expires: exp,
+            sameSite: "strict",
+            secure: false, // TODO: Change to true when HTTPS is enabled
+            path: "/",
+        })
     );
 
     // Return token and expiry date
