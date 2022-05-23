@@ -1,10 +1,12 @@
 import axios from "axios";
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import type { NextPage } from 'next';
 
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
+    const [formError, setFormError] = useState('');
     const router = useRouter();
 
     return (
@@ -25,15 +27,21 @@ const Home: NextPage = () => {
                             .then(() => router.push('/protected'))
                             .catch((err) => {
                                 console.log(err);
+                                setFormError(err.response.data.message || 'Something went wrong');
                             });
                     }}
                 >
                     <Form className="flex w-full flex-col space-y-2">
+                        <p className="text-red-600">{formError}</p>
+
                         <label className="mt-2 block text-sm font-bold">Email</label>
                         <Field type="email" placeholder="Email" name="email" />
+                        <ErrorMessage name="email" component="div" className="text-red-500" />
 
                         <label className="mt-2 block text-sm font-bold">Password</label>
                         <Field type="password" placeholder="Password" name="password" />
+                        <ErrorMessage name="password" component="div" className="text-red-500" />
+
                         <button
                             type="submit"
                             className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
@@ -42,14 +50,6 @@ const Home: NextPage = () => {
                         </button>
                     </Form>
                 </Formik>
-                {/* <button
-                    onClick={() =>
-                        
-                    }
-                    className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-                >
-                    Auth ME
-                </button> */}
             </div>
         </div>
     );

@@ -44,24 +44,36 @@ const loginUser = (
     });
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    // This will prevent clients from accessing the API through the browser
     if (req.method != 'POST') return;
 
     try {
         const { value, error } = await validateLoginData(req.body);
-        if (error) throw new Error(error.message);
+
+        if (error)
+            return res.status(500).json({ statusCode: 500, message: 'User Validation Error' });
 
         const user = await PrismaClient.user.findUnique({
             where: {
                 email: value.email,
             },
+            select: {
+                id: true,
+                password: true,
+            },
         });
 
-        if (!user) throw new Error('User not found');
+        if (!user) return res.status(404).json({ statusCode: 404, message: 'User Not Found' });
+
+        // Replace me with bycrpt to hash passwords
+        if (value.password != user.password)
+            return res.status(401).json({ statusCode: 401, message: 'Invalid Password' });
 
         const { token, exp } = await loginUser(res, user.id);
+
         return res.status(200).json({ message: 'Success', exp });
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ statusCode: 500, message: 'Internal server error' });
+        return res.status(500).json({ statusCode: 500, message: 'Internal Server Error' });
     }
 };
