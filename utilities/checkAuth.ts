@@ -1,12 +1,12 @@
-import { User } from "../interfaces/users";
-import jwt from "jsonwebtoken";
-import prisma from "../prisma/database";
+import { User } from '../interfaces/users';
+import jwt from 'jsonwebtoken';
+import prisma from '../prisma/database';
 
 export default async (token: string): Promise<User | undefined> =>
   new Promise(async (resolve) => {
     if (!token) return resolve(undefined);
 
-    jwt.verify(token, "secret", async (err: any, decoded: any) => {
+    jwt.verify(token, 'secret', async (err: any, decoded: any) => {
       if (err) return resolve(undefined);
 
       const user = await prisma.user.findFirst({

@@ -1,4 +1,4 @@
 export type NextTabbedPage = {
-    name: string;
-    Page: React.FC;
+  name: string;
+  Page: React.FC;
 };

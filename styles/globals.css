@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-    .h-view {
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
-    }
+  .h-view {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
 }
