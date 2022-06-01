@@ -3,7 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import type { NextPage } from 'next';
 
 import elenSpin from '../public/images/spin.gif';
-import landingPageImage from '../public/images/landing.png';
+import landingPageImage from '../public/images/login-head.png';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="h-view flex w-full items-center justify-center ">
+      <div className="h-view flex w-full items-center justify-center bg-white/70">
         <div className="flex h-fit w-4/5 max-w-sm flex-col items-center rounded border-2 border-gray-100 bg-white py-8 px-6 shadow-md ">
           <h1 className="w-full text-3xl text-black">
             Welcome to <span className="font-semibold">Quick60</span>
@@ -67,7 +67,10 @@ const Home: NextPage = () => {
           </Formik>
         </div>
       </div>
-      <img src={landingPageImage.src} className="fixed top-0 -z-10 h-screen  flex-none " />
+      <img
+        src={landingPageImage.src}
+        className="fixed top-0 -z-10 block h-full w-auto flex-none overflow-hidden object-cover "
+      />
     </>
   );
 };
