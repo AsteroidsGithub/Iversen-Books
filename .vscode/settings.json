@@ -4,5 +4,6 @@
     ".next/":true,
     "LICENSE.md":true,
     "next-env.d.ts":true,
-  }
+  },
+  "editor.formatOnSave": true,
 }
