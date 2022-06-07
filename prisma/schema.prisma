@@ -14,71 +14,41 @@ enum UserRole {
   Student
 }
 
-model User {
-  id          Int        @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  email       String     @unique
-  password    String
-  permissions UserRole[]
+enum wordLevel {
+  newDecodable
+  previouslyDecodable
+  newHighFrequency
+  previouslyHighFrequency
+  contextional
 }
 
-// enum wordLevel {
-//   newDecodable
-//   previouslyDecodable
-//   newHighFrequency
-//   previouslyHighFrequency
-//   contextional
-// }
+model User {
+  id              Int               @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  email           String            @unique
+  password        String
+  permissions     UserRole[]
+  StudentProgress StudentProgress[]
+}
 
-// model Book {
-//   id                Int    @id @default(autoincrement())
-//   title             String
-//   interventionLevel Float
-//   wordCount         Int
-//   phonicSkill       String
-//   hfWords           String
+model Book {
+  id              Int               @id @default(autoincrement())
+  title           String
+  author          String
+  description     String
+  ages            String            @default("all")
+  coverUrl        String            @unique
+  urlRefrence     String            @unique
+  StudentProgress StudentProgress[]
+}
 
-//   StudentBook     StudentBook[]
-//   StudentProgress StudentProgress[]
-// }
-
-// model StudentProgress {
-//   id        Int @id @default(autoincrement())
-//   bookId    Int
-//   studentId Int
-//   teacherId Int
-
-//   student Student @relation(fields: [studentId], references: [id])
-//   teacher Teacher @relation(fields: [teacherId], references: [id])
-//   Book    Book    @relation(fields: [bookId], references: [id])
-
-// }
-
-// model StudentBook {
-//   id         Int      @id @default(autoincrement())
-//   bookId     Int
-//   studentId  Int
-//   Book       Book     @relation(fields: [bookId], references: [id])
-//   Student    Student  @relation(fields: [studentId], references: [id])
-//   lastOpened DateTime @default(now())
-//   createdAt  DateTime @default(now())
-// }
-
-// model Student {
-//   id              Int               @id @default(autoincrement())
-//   teacherId       Int?
-//   firstName       String
-//   lastName        String
-//   Teacher         Teacher?          @relation(fields: [teacherId], references: [id])
-//   books           StudentBook[]
-//   StudentProgress StudentProgress[]
-// }
-
-// model Teacher {
-//   id              Int               @id @default(autoincrement())
-//   firstName       String
-//   lastName        String
-//   students        Student[]
-//   StudentProgress StudentProgress[]
-// }
+model StudentProgress {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  bookId         Int
+  time           Int      @default(0)
+  struggledWords String[]
+  student        User     @relation(fields: [userId], references: [id])
+  book           Book     @relation(fields: [bookId], references: [id])
+}

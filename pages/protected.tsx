@@ -1,42 +1,47 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
 import { User } from '@Interfaces/users';
-import checkAuth from '@Utilities/checkAuth';
+import useSharedState from '@Middleware/useSharedState';
+import getUser from '@Utilities/getUser';
 
-const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
-  const [activeTab, setActiveTab] = React.useState<{
-    [Key: number]: Boolean;
-  }>({
-    0: true,
-    1: false,
-  });
+const BooksTab: React.FC<{ name: string }> = () => {
+  return <h1>Top of digi is the goal</h1>;
+};
+const ProgressTab: React.FC<{ name: string }> = () => {
+  return <h1>lmao</h1>;
+};
+
+const TabbedHeader: React.FC<{ tabs: JSX.Element[] }> = ({ tabs }) => {
+  const { activeTab, setActiveTab } = useSharedState();
 
   return (
-    <div>
-      <div className="flex justify-center">
-        <div className="flex flex-col items-center justify-center bg-white py-10 px-6">
-          <h1 className="text-3xl text-black">
-            Welcome to <span className="font-semibold">Quick60 {user.firstName}</span>
-          </h1>
-        </div>
-      </div>
+    <div className="flex justify-center">
+      {tabs.map((tab, index) => (
+        <button
+          key={index}
+          className={`${
+            index === activeTab ? 'bg-blue-500 hover:bg-blue-600' : 'bg-gray-200 hover:bg-gray-300'
+          } rounded-full px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900`}
+          onClick={() => setActiveTab(index)}
+        >
+          {tab.props.name}
+        </button>
+      ))}
     </div>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const user = await checkAuth(context.req.cookies.auth);
+const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
+  const { activeTab, setActiveTab } = useSharedState();
+  const tabs = [<BooksTab name="Books" />, <ProgressTab name="Progress" />];
 
-  if (!user) {
-    console.log('Blocked access to protected page');
-    return { redirect: { destination: '/' }, props: {} };
-  }
-
-  return {
-    props: {
-      user,
-    },
-  };
+  return (
+    <>
+      <TabbedHeader tabs={tabs} />
+      {tabs[activeTab]}
+    </>
+  );
 };
 
+export const getServerSideProps: GetServerSideProps = (context) => getUser(context);
 export default ProtectedPage;

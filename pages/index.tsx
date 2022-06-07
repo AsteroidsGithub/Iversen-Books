@@ -69,7 +69,7 @@ const Home: NextPage = () => {
       </div>
       <img
         src={landingPageImage.src}
-        className="fixed top-0 -z-10 block h-full w-auto flex-none overflow-hidden object-cover "
+        className="fixed top-0 -z-10 block h-full w-full flex-none overflow-hidden object-cover "
       />
     </>
   );
