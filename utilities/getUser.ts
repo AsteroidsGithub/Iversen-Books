@@ -6,7 +6,8 @@ export default async (context: GetServerSidePropsContext<ParsedUrlQuery, Preview
   const user = await checkAuth(context.req.cookies.auth);
 
   if (!user) {
-    console.log('Blocked access to protected page');
+    console.log('\nBlocked access to protected page\n');
+    console.log(context.req.cookies);
     return { redirect: { destination: '/' }, props: {} };
   }
 

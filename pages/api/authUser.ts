@@ -31,7 +31,7 @@ const loginUser = (
         httpOnly: true,
         expires: exp,
         sameSite: 'strict',
-        secure: process.env.NODE_ENV == 'development' ? true : false, // TODO: Change to true when HTTPS is enabled
+        secure: process.env.NODE_ENV == 'production' ? true : false, // TODO: Change to true when HTTPS is enabled
         path: '/',
       }),
     );
@@ -70,6 +70,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { token, exp } = await loginUser(res, user.id);
 
+    console.log({ message: 'Success', exp });
     return res.status(200).json({ message: 'Success', exp });
   } catch (err) {
     console.error(err);
