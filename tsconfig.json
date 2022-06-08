@@ -21,7 +21,8 @@
       "@Middleware/*": ["./middleware/*"],
       "@Prisma/*": ["./prisma/*"],
       "@TabbedPages/*": ["./tabbedPages/*"],
-      "@Utilities/*": ["./utilities/*"]
+      "@Utilities/*": ["./utilities/*"],
+      "@views/*": ["./views/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/socket.ts"],
