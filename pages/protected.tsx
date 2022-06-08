@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { User } from '@Interfaces/users';
 import useSharedState from '@Middleware/useSharedState';
 import getUser from '@Utilities/getUser';
-import BooksTab from '@views/progress.tab';
+import BooksTab from '@views/books.tab';
 import ProgressTab from '@views/progress.tab';
 import TabHeader from '@Components/TabHeader';
 

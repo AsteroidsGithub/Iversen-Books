@@ -19,9 +19,9 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className="absolute inset-0">
-        <Component {...pageProps} />
-      </div>
+      {/* <div className="absolute inset-0"> */}
+      <Component {...pageProps} />
+      {/* </div> */}
     </>
   );
 };
