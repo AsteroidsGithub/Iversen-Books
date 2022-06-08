@@ -10,6 +10,7 @@ export default async (context: GetServerSidePropsContext<ParsedUrlQuery, Preview
     return { redirect: { destination: '/' }, props: {} };
   }
 
+
   return {
     props: {
       user,

@@ -1,4 +1,5 @@
-export type NextTabbedPage = {
-  name: string;
-  Page: React.FC;
-};
+import React from 'react';
+
+export type NextTabPage = React.FC<{
+  tabName: string;
+}>;
