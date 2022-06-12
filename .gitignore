@@ -2,3 +2,4 @@
 /.next
 /node_modules
 public/sw.js.map
+.env
