@@ -18,7 +18,7 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
   return (
     <>
       <TabHeader tabs={tabs} />
-      {tabs[activeTab]}
+      <div className="w-screen">{tabs[activeTab]}</div>
     </>
   );
 };
