@@ -9,7 +9,7 @@ import TabHeader from '@Components/TabHeader';
 
 const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
   const { activeTab, setUser } = useSharedState();
-  const tabs = [<BooksTab tabName="Books" />, <ProgressTab tabName="Progress" />];
+  const tabs = [<BooksTab tabName="Books" />, <ProgressTab tabName="Students" />];
 
   // This is a bit of a hack, but it's the only way to get
   // the user without calling GetServerSideProps.
