@@ -25,7 +25,7 @@ const Home: NextPage = () => {
             }}
             onSubmit={(formData, { setSubmitting }) => {
               axios
-                .post('/api/authUser', formData)
+                .post('/api/auth/login', formData)
 
                 .then(() => {
                   router.push('/protected');

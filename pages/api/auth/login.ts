@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 import { serialize } from 'cookie';
 import Joi from 'joi';
-import PrismaClient from '../../prisma/database';
+import PrismaClient from '../../../prisma/database';
 
 const validateLoginData = (user: { email: string; password: string }) =>
   Joi.object({
@@ -45,12 +45,16 @@ const loginUser = (
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   // This will prevent clients from accessing the API through the browser
-  if (req.method != 'POST') return;
+  if (req.method != 'POST')
+    return res.status(403).json({ statusCode: 403, message: 'Bad Request Please Use POST' });
 
   try {
     const { value, error } = await validateLoginData(req.body);
 
-    if (error) return res.status(500).json({ statusCode: 500, message: 'User Validation Error' });
+    if (error)
+      return res
+        .status(500)
+        .json({ statusCode: 500, message: 'User Validation Error', error: error.message });
 
     const user = await PrismaClient.user.findUnique({
       where: {
