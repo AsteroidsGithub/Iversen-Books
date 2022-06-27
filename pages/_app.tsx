@@ -2,6 +2,8 @@ import '../styles/globals.css';
 import React from 'react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import useSharedState from '@Middleware/useSharedState';
+import ModalController from '@Components/ModalController';
 
 export default ({ Component, pageProps }: AppProps) => {
   return (
@@ -19,9 +21,9 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      {/* <div className="absolute inset-0"> */}
-      <Component {...pageProps} />
-      {/* </div> */}
+      <ModalController>
+        <Component {...pageProps} />
+      </ModalController>
     </>
   );
 };
