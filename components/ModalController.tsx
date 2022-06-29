@@ -6,7 +6,7 @@ const ModalController: React.FC<{}> = ({ children }) => {
     <div>
       {activeModal != null && (
         <div
-          className="h-view flex w-full items-center justify-center bg-white/70"
+          className="flex h-screen w-full items-center justify-center bg-white/70"
           onClick={(e) => {
             console.log('test');
             setActiveModal(null);
