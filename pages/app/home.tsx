@@ -7,7 +7,7 @@ import BooksTab from '@views/books.tab';
 import StudentsTab from '@views/students.tab';
 import TabHeader from '@Components/TabHeader';
 
-const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
+const HomePage: NextPage<{ user: User }> = ({ user }) => {
   const { activeTab, setUser } = useSharedState();
   const tabs = [<BooksTab tabName="Books" />, <StudentsTab tabName="Students" />];
 
@@ -24,4 +24,4 @@ const ProtectedPage: NextPage<{ user: User }> = ({ user }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = (context) => getUser(context);
-export default ProtectedPage;
+export default HomePage;

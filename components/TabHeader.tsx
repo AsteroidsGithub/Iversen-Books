@@ -4,7 +4,7 @@ const TabHeader: React.FC<{ tabs: JSX.Element[] }> = ({ tabs }) => {
   const { activeTab, setActiveTab, user } = useSharedState();
 
   return (
-    <div className="sticky top-0 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl md:grid-rows-1">
+    <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl md:grid-rows-1">
       <h1 className="col-start-1 row-start-1 justify-start self-center py-3 font-serif text-2xl font-bold text-gray-800">
         Quick60
       </h1>

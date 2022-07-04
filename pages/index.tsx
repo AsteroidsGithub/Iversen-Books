@@ -7,7 +7,7 @@ import landingPageImage from '../public/images/login-head.png';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-const Home: NextPage = () => {
+const LoginPage: NextPage = () => {
   const [formError, setFormError] = useState('');
   const router = useRouter();
 
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
                 .post('/api/auth/login', formData)
 
                 .then(() => {
-                  router.push('/protected');
+                  router.push('/app/home');
                   setSubmitting(true);
                 })
                 .catch((err) => {
@@ -75,4 +75,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default LoginPage;
