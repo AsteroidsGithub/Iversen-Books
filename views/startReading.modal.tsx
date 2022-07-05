@@ -1,7 +1,10 @@
+import useSharedState from '@Middleware/useSharedState';
 import { useRouter } from 'next/router';
 
 const StartReadingModal: React.FC = () => {
   const router = useRouter();
+  const { setActiveModal } = useSharedState();
+
   return (
     <div>
       <h1>Start Reading</h1>
@@ -11,8 +14,9 @@ const StartReadingModal: React.FC = () => {
       </p>
       <button
         onClick={(e) => {
-          console.log('j');
-          router.push('/app');
+          e.preventDefault();
+          setActiveModal(null);
+          router.push('/app/book/9/6');
         }}
       >
         Start Reading

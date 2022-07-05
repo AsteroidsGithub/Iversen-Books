@@ -14,8 +14,8 @@ const PillHeader: React.FC = () => {
   const router = useRouter();
 
   return (
-    <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl md:grid-rows-1">
-      <div className="col-span-2 col-start-1 row-start-1 justify-start self-center py-3 md:col-span-1 ">
+    <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl lg:grid-rows-1">
+      <div className="col-span-2 col-start-1 row-start-1 justify-start self-center py-3 lg:col-span-1 ">
         <button className="inline align-middle text-3xl" onClick={() => router.push('/app')}>
           ⇠
         </button>
@@ -29,7 +29,7 @@ const PillHeader: React.FC = () => {
         <div className="h-8 w-8 rounded-full bg-gray-500" />
       </div>
 
-      <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  md:col-span-1 md:col-start-2 md:row-start-1 ">
+      <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((tab, index) => (
           <button key={index} className="my-2 min-w-fit snap-start bg-blue-500 px-4 ">
             Pill Item {tab}
@@ -39,8 +39,8 @@ const PillHeader: React.FC = () => {
           <button
             key={index}
             className={`${
-              index === activeTab ? 'border-b-4 border-blue-500 text-lg font-bold' : 'text-md '
-            } text-md h-full w-1/2 px-4 py-2 font-semibold text-gray-700 hover:rounded-md hover:bg-gray-50 hover:text-lg hover:text-blue-500 md:w-full `}
+              index === activeTab ? 'border-b-4 border-blue-500 text-lg font-bold' : 'text-lg '
+            } text-lg h-full w-1/2 px-4 py-2 font-semibold text-gray-700 hover:rounded-lg hover:bg-gray-50 hover:text-lg hover:text-blue-500 lg:w-full `}
             onClick={() => setActiveTab(index)}
           >
             {tab.props.tabName}
