@@ -28,7 +28,7 @@ const LoginPage: NextPage = () => {
                 .post('/api/auth/login', formData)
 
                 .then(() => {
-                  router.push('/app/home');
+                  router.push('/app');
                   setSubmitting(true);
                 })
                 .catch((err) => {

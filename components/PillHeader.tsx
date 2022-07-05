@@ -1,5 +1,7 @@
 import useSharedState from '@Middleware/useSharedState';
 import { array } from 'joi';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 // interface PillInformation {
 //   count: number;
@@ -9,11 +11,14 @@ import { array } from 'joi';
 
 const PillHeader: React.FC = () => {
   const { activeTab, setActiveTab, user } = useSharedState();
+  const router = useRouter();
 
   return (
     <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl md:grid-rows-1">
-      <div className="col-start-1 row-start-1 justify-start self-center py-3 ">
-        <button className="inline align-middle text-3xl">⇠</button>
+      <div className="col-span-2 col-start-1 row-start-1 justify-start self-center py-3 md:col-span-1 ">
+        <button className="inline align-middle text-3xl" onClick={() => router.push('/app')}>
+          ⇠
+        </button>
         <h1 className="inline align-middle font-serif text-2xl font-bold text-gray-800">
           Evaluating <span className="text-blue-500">{user?.firstName}</span>
         </h1>
