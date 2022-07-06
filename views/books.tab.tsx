@@ -15,8 +15,8 @@ const BooksTab: NextTabPage = () => {
     <div className="grid grid-cols-3 gap-2 px-2 sm:px-8 md:grid-cols-4 lg:grid-cols-6 2xl:px-32">
       <h2 className="col-span-full ">Continue</h2>
       <div className="relative  col-span-full flex w-full snap-x snap-mandatory gap-6 overflow-x-auto">
-        {test.map((url) => (
-          <div className="flex shrink-0 snap-center flex-row">
+        {test.map((url, i) => (
+          <div className="flex shrink-0 snap-center flex-row" key={i}>
             <img src={url} />
             <div className=" ">
               <h1>Title</h1>
@@ -30,11 +30,11 @@ const BooksTab: NextTabPage = () => {
       </div>
       <h2 className="col-span-full">Books</h2>
       {Array.from({ length: 4 }).map((_, i) => (
-        <BookCover />
+        <BookCover key={i} />
       ))}
       <h2 className="col-span-full">Books</h2>
       {Array.from({ length: 9 }).map((_, i) => (
-        <BookCover />
+        <BookCover key={i} />
       ))}
     </div>
   );
