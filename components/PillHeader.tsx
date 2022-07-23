@@ -1,15 +1,12 @@
+import { PillInformation } from '@Interfaces/next';
 import useSharedState from '@Middleware/useSharedState';
 import { array } from 'joi';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-// interface PillInformation {
-//   count: number;
-//   value: string;
-//   color: string;
-// }
-
-const PillHeader: React.FC = () => {
+const PillHeader: React.FC<{
+  pillInfo: PillInformation[];
+}> = ({ pillInfo }) => {
   const { activeTab, setActiveTab, user } = useSharedState();
   const router = useRouter();
 
@@ -30,9 +27,9 @@ const PillHeader: React.FC = () => {
       </div>
 
       <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((tab, index) => (
-          <button key={index} className="my-2 min-w-fit snap-start bg-blue-500 px-4 ">
-            Pill Item {tab}
+        {pillInfo.map(({ pill }, index) => (
+          <button key={index} className={`my-2 min-w-fit snap-start bg-${pill.color}-500 px-4 `}>
+            {pill} {pill.count}
           </button>
         ))}
         {/* {tabs.map((tab, index) => (

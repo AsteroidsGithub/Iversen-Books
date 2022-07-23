@@ -4,12 +4,14 @@ import { useRouter } from 'next/router';
 import { User } from '@Interfaces/users';
 import getUser from '@Utilities/getUser';
 import useSharedState from '@Middleware/useSharedState';
+import { useState } from 'react';
+import { PillInformation } from '@Interfaces/next';
 
 const Post: NextPage<{ user: User }> = ({ user }) => {
   const { bookId, studentId } = useRouter().query;
   useSharedState().setUser(user);
   // Pages > Lines
-  const bookRawData: String[][] = [
+  const bookRawData: string[][] = [
     [
       'What did you have for breakfast today? Did you have a bran muffin?',
       'Did you have pancakes?',
@@ -53,11 +55,20 @@ const Post: NextPage<{ user: User }> = ({ user }) => {
   ];
 
   // Pages > Lines > Words
-  const bookData: String[][][] = bookRawData.map((page) => page.map((line) => line.split(' ')));
+  const bookData: string[][][] = bookRawData.map((page) => page.map((line) => line.split(' ')));
+
+  const [pill, setPill] = useState<PillInformation[]>([
+    {
+      word: {
+        color: 'blue',
+        count: 0,
+      },
+    },
+  ]);
 
   return (
     <>
-      <PillHeader />
+      <PillHeader pillInfo={pill} />
       <div>
         {bookData.map((pages, index) => (
           <>
@@ -66,7 +77,11 @@ const Post: NextPage<{ user: User }> = ({ user }) => {
               {pages.map((line, i) => (
                 <p>
                   {line.map((word) => (
-                    <span key={i} onClick={() => console.log(word)} className="cursor-pointer">
+                    <span
+                      key={i}
+                      onClick={() => setPill((prev) => [...prev])}
+                      className="cursor-pointer"
+                    >
                       {word}{' '}
                     </span>
                   ))}
