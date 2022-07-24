@@ -6,42 +6,13 @@ import getUser from '@Utilities/getUser';
 import useSharedState from '@Middleware/useSharedState';
 import { useState } from 'react';
 import { PillInformation } from '@Interfaces/next';
+import { BookJSON, WordType, WordTypeColor } from '@Interfaces/books';
+import Word from '@Components/Word';
 
 const Post: NextPage<{ user: User }> = ({ user }) => {
   const { bookId, studentId } = useRouter().query;
   useSharedState().setUser(user);
   // Pages > Lines
-  
-  interface BookJSON {
-    metadata: {
-      title: string;
-      author: string;
-      description: string;
-      newPhonicSkill: string;
-      newHighFrequencyWord: string;
-      InterventionLevel: number;
-      wordCount: number;
-    };
-    refs: {
-      raw: string;
-      coverArt: string;
-    };
-    Pages: [
-      {
-        start: number;
-        end: number;
-        Lines: {
-          value: string;
-          type:
-            | 'New Skill'
-            | 'Previous Skill'
-            | 'New High-Frequency'
-            | 'Previous High-Frequency'
-            | 'Photo / Context Aware';
-        }[][];
-      },
-    ];
-  }
 
   const bookJSONExample: BookJSON = {
     metadata: {
@@ -49,7 +20,7 @@ const Post: NextPage<{ user: User }> = ({ user }) => {
       author: 'John Doe',
       description: 'A book about breakfast',
       InterventionLevel: 15.3,
-      wordCount: 100,
+      wordCount: 189,
       newPhonicSkill: 'Compound Words',
       newHighFrequencyWord: 'Sometimes',
     },
@@ -85,6 +56,100 @@ const Post: NextPage<{ user: User }> = ({ user }) => {
             },
             {
               value: 'today?',
+              type: 'New Skill',
+            },
+          ],
+          [
+            {
+              value: 'Did',
+              type: 'Previous Skill',
+            },
+            {
+              value: 'you',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'have',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'a',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'bran',
+              type: 'Previous Skill',
+            },
+            {
+              value: 'muffin?',
+              type: 'Photo / Context Aware',
+            },
+          ],
+          [
+            {
+              value: 'Did',
+              type: 'Previous Skill',
+            },
+            {
+              value: 'you',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'have',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'pancakes?',
+              type: 'New Skill',
+            },
+          ],
+          [
+            {
+              value: 'Did',
+              type: 'Previous Skill',
+            },
+            {
+              value: 'you',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'have',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'cornflakes?',
+              type: 'New Skill',
+            },
+          ],
+          [
+            {
+              value: 'Some',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'people',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'eat',
+              type: 'Previous Skill',
+            },
+            {
+              value: 'these',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'things',
+              type: 'Previous Skill',
+            },
+          ],
+          [
+            {
+              value: 'for',
+              type: 'Previous High-Frequency',
+            },
+            {
+              value: 'breakfast.',
               type: 'New Skill',
             },
           ],
@@ -138,28 +203,38 @@ const Post: NextPage<{ user: User }> = ({ user }) => {
     <>
       <PillHeader />
       <div>
-        {bookJSONExample.Pages.map((page, index) => (
-          <>
+        <div>
+          <h2>Key</h2>
+          <p>
+            <span className="text-red-500">New Skill</span>
+            <br />
+            <span className="text-green-500">Previous Skill</span>
+            <br />
+            <span className="text-blue-500">New High-Frequency</span>
+            <br />
+            <span className="text-pink-500">Previous High-Frequency</span>
+            <br />
+            <span className="text-amber-500">Photo / Context Aware</span>
+            <br />
+            <br />
+          </p>
+        </div>
+        {bookJSONExample.Pages.map((page, a) => (
+          <div key={a}>
             <h2>
               Page {page.start}/{page.end}
             </h2>
             <p>
-              {page.Lines.map((line, i) => (
-                <p>
-                  {line.map((word, j) => (
-                    <span
-                      key={i}
-                      onClick={() => console.log(`${word.value}:${word.type}`)}
-                      className="cursor-pointer"
-                    >
-                      {word.value}{' '}
-                    </span>
+              {page.Lines.map((line, b) => (
+                <p key={b}>
+                  {line.map((word, c) => (
+                    <Word index={c} word={word} />
                   ))}
                   <br />
                 </p>
               ))}
             </p>
-          </>
+          </div>
         ))}
       </div>
     </>
