@@ -1,10 +1,10 @@
 import React from 'react';
 
-export type NextTabPage = React.FC<{
+export type T_NextTabPage = React.FC<{
   tabName: string;
 }>;
 
-export interface PillInformation {
+export interface I_PillInformation {
   [value: string]: {
     count: number;
     color: 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'orange' | 'pink';

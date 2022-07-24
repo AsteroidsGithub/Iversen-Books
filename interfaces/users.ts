@@ -1,6 +1,6 @@
 import { UserRole } from '@prisma/client';
 
-export interface User {
+export interface I_User {
   id: number;
   firstName: string;
   lastName: string;
@@ -8,11 +8,12 @@ export interface User {
   permissions: UserRole[];
 }
 
-export interface AuthenticationToken {
+export interface I_AuthenticationToken {
   id: number;
   expiry: number;
 }
 
-export interface AuthenticatedUser extends User {
+export interface I_AuthenticatedUser extends I_User {
   password: string;
 }
+

@@ -1,11 +1,11 @@
-import { User } from '@Interfaces/users';
+import { I_User } from '@Interfaces/users';
 import { useState } from 'react';
 import { useBetween } from 'use-between';
 
 const useSharedState = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
   const [activeModal, setActiveModal] = useState<JSX.Element | null>(null);
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<I_User>();
 
   return {
     activeTab,

@@ -1,4 +1,4 @@
-import { PillInformation } from '@Interfaces/next';
+import { I_PillInformation } from '@Interfaces/next';
 import useSharedState from '@Middleware/useSharedState';
 import { array } from 'joi';
 import { useRouter } from 'next/router';

@@ -1,11 +1,11 @@
-export type WordType =
+export type T_WordType =
   | 'New Skill'
   | 'Previous Skill'
   | 'New High-Frequency'
   | 'Previous High-Frequency'
   | 'Photo / Context Aware';
 
-export enum WordTypeColor {
+export enum E_WordTypeColor {
   'New Skill' = 'red',
   'Previous Skill' = 'green',
   'New High-Frequency' = 'blue',
@@ -13,12 +13,12 @@ export enum WordTypeColor {
   'Photo / Context Aware' = 'amber',
 }
 
-export interface BookWord {
+export interface I_BookWord {
   value: string;
-  type: WordType;
+  type: T_WordType;
 }
 
-export interface BookJSON {
+export interface I_BookJSON {
   metadata: {
     title: string;
     author: string;
@@ -36,7 +36,7 @@ export interface BookJSON {
     {
       start: number;
       end: number;
-      Lines: BookWord[][];
+      Lines: I_BookWord[][];
     },
   ];
 }

@@ -1,20 +1,20 @@
 import PillHeader from '@Components/PillHeader';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { User } from '@Interfaces/users';
+import { I_User } from '@Interfaces/users';
 import getUser from '@Utilities/getUser';
 import useSharedState from '@Middleware/useSharedState';
 import { useState } from 'react';
-import { PillInformation } from '@Interfaces/next';
-import { BookJSON, WordType, WordTypeColor } from '@Interfaces/books';
+import { I_PillInformation } from '@Interfaces/next';
+import { I_BookJSON, T_WordType, E_WordTypeColor } from '@Interfaces/books';
 import Word from '@Components/Word';
 
-const Post: NextPage<{ user: User }> = ({ user }) => {
+const Post: NextPage<{ user: I_User }> = ({ user }) => {
   const { bookId, studentId } = useRouter().query;
   useSharedState().setUser(user);
   // Pages > Lines
 
-  const bookJSONExample: BookJSON = {
+  const bookJSONExample: I_BookJSON = {
     metadata: {
       title: 'Breakfast',
       author: 'John Doe',

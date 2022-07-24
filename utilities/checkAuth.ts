@@ -1,8 +1,8 @@
-import { User } from '../interfaces/users';
+import { I_User } from '../interfaces/users';
 import jwt from 'jsonwebtoken';
 import prisma from '../prisma/database';
 
-export default async (token: string): Promise<User | undefined> =>
+export default async (token: string): Promise<I_User | undefined> =>
   new Promise(async (resolve) => {
     if (!token) return resolve(undefined);
 
