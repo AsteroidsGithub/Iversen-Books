@@ -13,6 +13,8 @@ export enum E_WordTypeColor {
   'Photo / Context Aware' = 'amber',
 }
 
+export type T_WordTypeColor = 'red' | 'green' | 'blue' | 'pink' | 'amber';
+
 export interface I_BookWord {
   value: string;
   type: T_WordType;
@@ -39,4 +41,10 @@ export interface I_BookJSON {
       Lines: I_BookWord[][];
     },
   ];
+}
+
+export interface I_PillInformation {
+  count: number;
+  value: T_WordType;
+  color: E_WordTypeColor | T_WordTypeColor;
 }

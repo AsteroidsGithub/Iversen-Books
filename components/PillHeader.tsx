@@ -1,11 +1,8 @@
-import { I_PillInformation } from '@Interfaces/next';
 import useSharedState from '@Middleware/useSharedState';
-import { array } from 'joi';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const PillHeader: React.FC = () => {
-  const { activeTab, setActiveTab, user } = useSharedState();
+  const { struggledWords, user } = useSharedState();
   const router = useRouter();
 
   return (
@@ -25,11 +22,14 @@ const PillHeader: React.FC = () => {
       </div>
 
       <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
-        {/* {pillInfo.map(({ pill }, index) => (
-          <button key={index} className={`my-2 min-w-fit snap-start bg-${pill.color}-500 px-4 `}>
-            {pill} {pill.count}
+        {struggledWords.map((word, a) => (
+          <button
+            key={a}
+            className={`my-2 min-w-fit snap-start text-${word.color}-500 rounded-md border-2 px-4 shadow`}
+          >
+            {word.value}: {word.count}
           </button>
-        ))} */}
+        ))}
         {/* {tabs.map((tab, index) => (
           <button
             key={index}
