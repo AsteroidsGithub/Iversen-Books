@@ -6,10 +6,13 @@ import getUser from '@Utilities/getUser';
 import BooksTab from '@Views/books.tab';
 import StudentsTab from '@Views/students.tab';
 import TabHeader from '@Components/TabHeader';
+import prisma from '@Services/database';
+import checkAuth from '@Utilities/checkAuth';
+import { I_BookJSON } from '@Interfaces/books';
 
-const HomePage: NextPage<{ user: I_User }> = ({ user }) => {
+const HomePage: NextPage<{ user: I_User; books: I_BookJSON[] }> = ({ user, books }) => {
   const { activeTab, setUser } = useSharedState();
-  const tabs = [<BooksTab tabName="Books" />, <StudentsTab tabName="Students" />];
+  const tabs = [<BooksTab tabName="Books" books={books} />, <StudentsTab tabName="Students" />];
 
   // This is a bit of a hack, but it's the only way to get
   // the user without calling GetServerSideProps.
@@ -22,6 +25,18 @@ const HomePage: NextPage<{ user: I_User }> = ({ user }) => {
     </>
   );
 };
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const user = await checkAuth(context.req.cookies.auth);
+  if (!user) return { redirect: { destination: '/' }, props: {} };
 
-export const getServerSideProps: GetServerSideProps = (context) => getUser(context);
+  const books = await prisma.book.findMany();
+  if (!books) return { redirect: { destination: '/' }, props: {} };
+
+  return {
+    props: {
+      user,
+      books: books.map((book) => book.rawJSON),
+    },
+  };
+};
 export default HomePage;

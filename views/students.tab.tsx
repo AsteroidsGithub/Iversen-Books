@@ -1,7 +1,7 @@
 import StudentProfile from '@Components/StudentProfile';
 import { T_NextTabPage } from '@Interfaces/next';
 
-const StudentsTab: T_NextTabPage = () => {
+const StudentsTab: T_NextTabPage<{ tabName: string }> = () => {
   return (
     <div className="grid grid-cols-4 gap-2 px-2 sm:px-8 md:grid-cols-7 lg:grid-cols-9 2xl:px-32">
       <h2 className="col-span-full">Class One</h2>

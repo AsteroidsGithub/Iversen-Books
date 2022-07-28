@@ -1,7 +1,8 @@
+import { I_BookJSON } from '@Interfaces/books';
 import useSharedState from '@Middleware/useSharedState';
 import StartReadingModal from '@Views/startReading.modal';
 
-const BookCover: React.FC<{}> = ({}) => {
+const BookCover: React.FC<{ book: I_BookJSON }> = ({ book }) => {
   const { setActiveModal } = useSharedState();
 
   return (
@@ -11,10 +12,11 @@ const BookCover: React.FC<{}> = ({}) => {
         setActiveModal(<StartReadingModal />);
       }}
     >
-      <img src="https://via.placeholder.com/128" alt="book cover" className="w-full rounded-md" />
-      <h2 className="text-center">Book cover Template</h2>
+      <img src={book.refs.coverArt} alt="book cover" className="w-full rounded-md" />
+      <h2 className="text-center">{book.metadata.title}</h2>
       <h3 className="text-center">
-        <span>Level</span>・<span>words</span>
+        <span>Level {book.metadata.interventionLevel}</span>・
+        <span>words {book.metadata.wordCount}</span>
       </h3>
     </div>
   );

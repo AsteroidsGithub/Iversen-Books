@@ -1,5 +1,7 @@
 import React from 'react';
 
-export type T_NextTabPage = React.FC<{
-  tabName: string;
-}>;
+interface I_NextTabPageProps {
+  tabName?: string;
+  [key: string]: any;
+}
+export type T_NextTabPage<test = {}> = React.FC<test>;
