@@ -6,4 +6,8 @@
     "next-env.d.ts":true,
   },
   "editor.formatOnSave": true,
+  "cSpell.words": [
+    "Iversen",
+    "Voss"
+  ],
 }

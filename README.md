@@ -1,9 +1,13 @@
 
 <p align="center">
-  <img src="https://cdn.discordapp.com/attachments/811364311795630130/1002137119701082132/logo.png" />
+  <img height="200" src="https://cdn.discordapp.com/attachments/811364311795630130/1002137119701082132/logo.png" />
   <h1 align="center">
-📚 Iverson Publishing App
+Iversen Publishing App
 </h1>
+<p  align="center">
+The Digital edition of Iversen Publishing's Quick60 teaching resources.</br>
+Created By Jonathan Voss
+</p>
 </p>
 
 ## Setup instructions
