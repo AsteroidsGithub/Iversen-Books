@@ -21,26 +21,31 @@ export interface I_BookWord {
 }
 
 export interface I_BookJSON {
+  version: number;
   metadata: {
     title: string;
     author: string;
     description: string;
     newPhonicSkill: string;
     newHighFrequencyWord: string;
-    InterventionLevel: number;
+    interventionLevel: number;
     wordCount: number;
   };
   refs: {
     raw: string;
     coverArt: string;
   };
-  Pages: [
+  pages: [
     {
       start: number;
       end: number;
-      Lines: I_BookWord[][];
+      lines: I_BookWord[][];
     },
   ];
+  comprehension: {
+    literal: string[];
+    inferential: string[];
+  };
 }
 
 export interface I_PillInformation {

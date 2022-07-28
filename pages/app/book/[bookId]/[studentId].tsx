@@ -6,18 +6,21 @@ import getUser from '@Utilities/getUser';
 import useSharedState from '@Middleware/useSharedState';
 import { I_BookJSON, T_WordType, E_WordTypeColor } from '@Interfaces/books';
 import Word from '@Components/Word';
+import checkAuth from '@Utilities/checkAuth';
+import prisma from '@Prisma/database';
+import { Prisma } from '@prisma/client';
 
 const Post: NextPage<{ user: I_User }> = ({ user }) => {
-  const { bookId, studentId } = useRouter().query;
   useSharedState().setUser(user);
   // Pages > Lines
 
   const bookJSONExample: I_BookJSON = {
+    version: 1,
     metadata: {
       title: 'Breakfast',
       author: 'John Doe',
       description: 'A book about breakfast',
-      InterventionLevel: 15.3,
+      interventionLevel: 15.3,
       wordCount: 189,
       newPhonicSkill: 'Compound Words',
       newHighFrequencyWord: 'Sometimes',
@@ -26,11 +29,11 @@ const Post: NextPage<{ user: I_User }> = ({ user }) => {
       raw: 'https://raw.githubusercontent.com/...',
       coverArt: 'https://...',
     },
-    Pages: [
+    pages: [
       {
         start: 2,
         end: 3,
-        Lines: [
+        lines: [
           [
             {
               value: 'What',
@@ -154,6 +157,10 @@ const Post: NextPage<{ user: I_User }> = ({ user }) => {
         ],
       },
     ],
+    comprehension: {
+      literal: [],
+      inferential: [],
+    },
   };
   //   [
   //     'What did you have for breakfast today? Did you have a bran muffin?',
@@ -217,13 +224,13 @@ const Post: NextPage<{ user: I_User }> = ({ user }) => {
             <br />
           </p>
         </div>
-        {bookJSONExample.Pages.map((page, a) => (
+        {bookJSONExample.pages.map((page, a) => (
           <div key={a}>
             <h2>
               Page {page.start}/{page.end}
             </h2>
             <p>
-              {page.Lines.map((line, b) => (
+              {page.lines.map((line, b) => (
                 <p key={b}>
                   {line.map((word, c) => (
                     <Word index={c} word={word} />
@@ -239,6 +246,22 @@ const Post: NextPage<{ user: I_User }> = ({ user }) => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const user = await checkAuth(context.req.cookies.auth);
+  if (!user) return { redirect: { destination: '/' }, props: {} };
 
-export const getServerSideProps: GetServerSideProps = (context) => getUser(context);
+  const { bookId } = context.query;
+  if (!bookId) return { redirect: { destination: '/app' }, props: {} };
+
+  const book = prisma.book.findFirst({
+    where: { id: parseInt(`${bookId}`) },
+  });
+
+  return {
+    props: {
+      user,
+      book,
+    },
+  };
+};
 export default Post;

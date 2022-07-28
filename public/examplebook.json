@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "metadata": {
+    "title": "Gas Makes It Go",
+    "description": "Gas makes everything go",
+    "author": "Dean Iverson",
+    "interventionLevel": 1.2,
+    "wordCount": 26,
+    "newPhonicSkill": "short a",
+    "newHighFrequencyWord": ""
+  },
+  "refs": {
+    "raw": "",
+    "coverArt": "/public/images/gasMakesItGo.png"
+  },
+  "pages": [
+    {
+      "start": 2,
+      "end": 3,
+      "lines": [
+        [
+          {
+            "value": "Gas",
+            "type": "New Skill"
+          },
+          {
+            "value": "makes",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "this",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "balloon",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "go.",
+            "type": "Previous High-Frequency"
+          }
+        ]
+      ]
+    },
+    {
+      "start": 4,
+      "end": 5,
+      "lines": [
+        [
+          {
+            "value": "Gas",
+            "type": "New Skill"
+          },
+          {
+            "value": "makes",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "this",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "car",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "go.",
+            "type": "Previous High-Frequency"
+          }
+        ]
+      ]
+    },
+    {
+      "start": 6,
+      "end": 7,
+      "lines": [
+        [
+          {
+            "value": "Gas",
+            "type": "New Skill"
+          },
+          {
+            "value": "makes",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "this",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "stove",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "go.",
+            "type": "Previous High-Frequency"
+          }
+        ]
+      ]
+    },
+    {
+      "start": 8,
+      "end": 9,
+      "lines": [
+        [
+          {
+            "value": "Gas",
+            "type": "New Skill"
+          },
+          {
+            "value": "makes",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "this",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "fire",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "go.",
+            "type": "Previous High-Frequency"
+          }
+        ]
+      ]
+    },
+    {
+      "start": 10,
+      "end": 11,
+      "lines": [
+        [
+          {
+            "value": "Gas",
+            "type": "New Skill"
+          },
+          {
+            "value": "makes",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "this",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "fire",
+            "type": "Photo / Context Aware"
+          },
+          {
+            "value": "go,",
+            "type": "Previous High-Frequency"
+          },
+          {
+            "value": "too.",
+            "type": "Photo / Context Aware"
+          }
+        ]
+      ]
+    }
+  ],
+  "comprehension": {
+    "literal": [
+      "Does gas make a fire go?",
+      "What makes a balloon go?",
+      "Which other things rely on gas to make them go?",
+      "Can you have a gas fire outside?"
+    ],
+    "inferential": [
+      "What other things can make a fire go?",
+      "Why do you think people have outside fires?",
+      "What could happen if you get too close to a stove with pots on it?",
+      "Would you like to go in a hot air balloon? Why or why not?"
+    ]
+  }
+}
