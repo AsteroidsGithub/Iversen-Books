@@ -2,12 +2,13 @@ import PillHeader from '@Components/PillHeader';
 import Word from '@Components/Word';
 import useSharedState from '@Middleware/useSharedState';
 import checkAuth from '@Utilities/checkAuth';
+import prisma from '@Services/database';
 
 import { GetServerSideProps, NextPage } from 'next';
 import { I_BookJSON } from '@Interfaces/books';
 import { I_User } from '@Interfaces/users';
 
-const Post: NextPage<{ user: I_User }> = ({ user }) => {
+const Post: NextPage<{ user: I_User; book: I_BookJSON }> = ({ user }) => {
   useSharedState().setUser(user);
   // Pages > Lines
 
@@ -247,20 +248,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await checkAuth(context.req.cookies.auth);
   if (!user) return { redirect: { destination: '/' }, props: {} };
 
-  // const { bookId } = context.query;
-  // if (!bookId) return { redirect: { destination: '/app' }, props: {} };
+  const { bookId } = context.query;
 
-  // const book = prisma.book.findUnique({
-  //   where: { id: parseInt(`${bookId}`) },
-  //   include: {
+  const book = await prisma.book.findUnique({
+    where: { id: parseInt(`${bookId}`) },
+  });
 
-  //   }
-  // });
+  if (!book) return { redirect: { destination: '/app' }, props: {} };
+
+  console.log(book.rawJSON);
 
   return {
     props: {
       user,
-      // book,
+      book: book.rawJSON,
     },
   };
 };

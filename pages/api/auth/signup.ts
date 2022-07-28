@@ -1,4 +1,4 @@
-import PrismaClient from '../../../prisma/database';
+import PrismaClient from '../../../services/database';
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { UserRole } from '@prisma/client';

@@ -19,7 +19,7 @@
       "@Components/*": ["./components/*"],
       "@Interfaces/*": ["./interfaces/*"],
       "@Middleware/*": ["./middleware/*"],
-      "@services/*": ["./prisma/*"],
+      "@Services/*": ["./services/*"],
       "@TabbedPages/*": ["./tabbedPages/*"],
       "@Utilities/*": ["./utilities/*"],
       "@Views/*": ["./views/*"],
