@@ -8,8 +8,8 @@
     "lint": "next lint",
     "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
+    "prisma:format": "prisma format",
     "prisma:deploy": "prisma db push"
-
   },
   "dependencies": {
     "@prisma/client": "^3.9.2",
