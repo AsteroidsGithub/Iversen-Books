@@ -22,14 +22,17 @@ const PillHeader: React.FC = () => {
       </div>
 
       <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
-        {struggledWords.map((word, a) => (
-          <button
-            key={a}
-            className={`my-2 min-w-fit snap-start text-${word.color}-500 rounded-md border-2 px-4 shadow`}
-          >
-            {word.value}: {word.count}
-          </button>
-        ))}
+        {struggledWords
+          // Sort the highest count first for ease of use
+          .sort((a, b) => b.count - a.count)
+          .map((word, a) => (
+            <button
+              key={a}
+              className={`my-2 min-w-fit snap-start text-${word.color}-500 rounded-md border-2 px-4 shadow`}
+            >
+              {word.value}: {word.count}
+            </button>
+          ))}
         {/* {tabs.map((tab, index) => (
           <button
             key={index}
