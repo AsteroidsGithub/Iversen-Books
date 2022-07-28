@@ -1,14 +1,11 @@
 import PillHeader from '@Components/PillHeader';
-import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { I_User } from '@Interfaces/users';
-import getUser from '@Utilities/getUser';
-import useSharedState from '@Middleware/useSharedState';
-import { I_BookJSON, T_WordType, E_WordTypeColor } from '@Interfaces/books';
 import Word from '@Components/Word';
+import useSharedState from '@Middleware/useSharedState';
 import checkAuth from '@Utilities/checkAuth';
-import prisma from '@Prisma/database';
-import { Prisma } from '@prisma/client';
+
+import { GetServerSideProps, NextPage } from 'next';
+import { I_BookJSON } from '@Interfaces/books';
+import { I_User } from '@Interfaces/users';
 
 const Post: NextPage<{ user: I_User }> = ({ user }) => {
   useSharedState().setUser(user);
@@ -250,17 +247,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await checkAuth(context.req.cookies.auth);
   if (!user) return { redirect: { destination: '/' }, props: {} };
 
-  const { bookId } = context.query;
-  if (!bookId) return { redirect: { destination: '/app' }, props: {} };
+  // const { bookId } = context.query;
+  // if (!bookId) return { redirect: { destination: '/app' }, props: {} };
 
-  const book = prisma.book.findFirst({
-    where: { id: parseInt(`${bookId}`) },
-  });
+  // const book = prisma.book.findUnique({
+  //   where: { id: parseInt(`${bookId}`) },
+  //   include: {
+
+  //   }
+  // });
 
   return {
     props: {
       user,
-      book,
+      // book,
     },
   };
 };
