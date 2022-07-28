@@ -16,7 +16,7 @@ const StartReadingModal: React.FC = () => {
         onClick={(e) => {
           e.preventDefault();
           setActiveModal(null);
-          router.push('/app/book/9/6');
+          router.push('/app/book/1/6');
         }}
       >
         Start Reading

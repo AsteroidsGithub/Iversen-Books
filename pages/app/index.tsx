@@ -3,8 +3,8 @@ import type { GetServerSideProps, NextPage } from 'next';
 import { I_User } from '@Interfaces/users';
 import useSharedState from '@Middleware/useSharedState';
 import getUser from '@Utilities/getUser';
-import BooksTab from '@views/books.tab';
-import StudentsTab from '@views/students.tab';
+import BooksTab from '@Views/books.tab';
+import StudentsTab from '@Views/students.tab';
 import TabHeader from '@Components/TabHeader';
 
 const HomePage: NextPage<{ user: I_User }> = ({ user }) => {
