@@ -7,10 +7,25 @@ import prisma from '@Services/database';
 import { GetServerSideProps, NextPage } from 'next';
 import { I_BookJSON } from '@Interfaces/books';
 import { I_User } from '@Interfaces/users';
+import { useEffect } from 'react';
 
 const Post: NextPage<{ user: I_User; book: I_BookJSON }> = ({ user, book }) => {
-  useSharedState().setUser(user);
-  // Pages > Lines
+  const { setUser, setStruggledWords } = useSharedState();
+  setUser(user);
+
+  // useEffect is used to prevent a infinite loop of state updates
+  // when we call the setStruggledWords function.
+  useEffect(
+    () =>
+      setStruggledWords([
+        { count: 0, value: 'New Skill', color: 'red' },
+        { count: 0, value: 'Previous Skill', color: 'green' },
+        { count: 0, value: 'New High-Frequency', color: 'blue' },
+        { count: 0, value: 'Previous High-Frequency', color: 'pink' },
+        { count: 0, value: 'Photo / Context Aware', color: 'amber' },
+      ]),
+    [],
+  );
 
   return (
     <>

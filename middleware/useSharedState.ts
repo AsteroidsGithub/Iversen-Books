@@ -14,7 +14,6 @@ const useSharedState = () => {
   ]);
   const [activeModal, setActiveModal] = useState<JSX.Element | null>(null);
   const [user, setUser] = useState<I_User>();
-
   return {
     activeTab,
     setActiveTab,

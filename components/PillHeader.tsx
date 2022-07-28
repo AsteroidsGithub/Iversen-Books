@@ -8,7 +8,12 @@ const PillHeader: React.FC = () => {
   return (
     <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-2 bg-white/90 px-2  shadow-lg backdrop-blur-3xl lg:grid-rows-1">
       <div className="col-span-2 col-start-1 row-start-1 justify-start self-center py-3 lg:col-span-1 ">
-        <button className="inline align-middle text-3xl" onClick={() => router.push('/app')}>
+        <button
+          className="inline align-middle text-3xl"
+          onClick={() => {
+            router.push('/app');
+          }}
+        >
           ⇠
         </button>
         <h1 className="inline align-middle font-serif text-2xl font-bold text-gray-800">
