@@ -1,4 +1,10 @@
-# 📚 Iverson Publishing App
+
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/811364311795630130/1002137119701082132/logo.png" />
+  <h1 align="center">
+📚 Iverson Publishing App
+</h1>
+</p>
 
 ## Setup instructions
 Before you start to run this project the following tools need to be installed on your machine, `homebrew`, `postgres` (mysql works too) and `node`
