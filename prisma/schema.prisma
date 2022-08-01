@@ -11,7 +11,6 @@ enum UserRole {
   Admin
   Publisher
   Teacher
-  Student
 }
 
 enum wordLevel {
@@ -23,28 +22,45 @@ enum wordLevel {
 }
 
 model User {
-  id              Int               @id @default(autoincrement())
-  firstName       String
-  lastName        String
-  email           String            @unique
-  password        String
-  permissions     UserRole[]
+  Id          Int        @id @default(autoincrement())
+  FirstName   String
+  LastName    String
+  Email       String     @unique
+  Password    String
+  Permissions UserRole[]
+  Class       Class[]
+}
+
+model Class {
+  Id        Int       @id @default(autoincrement())
+  Name      String
+  Students  Student[]
+  Teacher   User      @relation(fields: [TeacherId], references: [Id])
+  TeacherId Int
+}
+
+model Student {
+  Id              Int               @id @default(autoincrement())
+  FirstName       String
+  LastName        String
+  Class           Class             @relation(fields: [ClassId], references: [Id])
+  ClassId         Int
   StudentProgress StudentProgress[]
 }
 
 model Book {
-  id              Int               @id @default(autoincrement())
-  rawJSON         Json        
-  url             String           
+  Id              Int               @id @default(autoincrement())
+  Json            Json
+  Url             String
   StudentProgress StudentProgress[]
 }
 
 model StudentProgress {
-  id             Int      @id @default(autoincrement())
-  userId         Int
-  bookId         Int
-  time           Int      @default(0)
-  struggledWords String[]
-  student        User     @relation(fields: [userId], references: [id])
-  book           Book     @relation(fields: [bookId], references: [id])
+  Id             Int      @id @default(autoincrement())
+  Time           Int      @default(0)
+  StruggledWords String[]
+  Book           Book     @relation(fields: [BookId], references: [Id])
+  BookId         Int
+  Student        Student  @relation(fields: [StudentId], references: [Id])
+  StudentId      Int
 }

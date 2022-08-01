@@ -1,16 +1,17 @@
 import StudentProfile from '@Components/StudentProfile';
-import { T_NextTabPage } from '@Interfaces/next';
+import { I_Class, I_Student } from '@Interfaces/users';
+import { NextPage } from 'next';
 
-const StudentsTab: T_NextTabPage<{ tabName: string }> = () => {
+const StudentsTab: NextPage<{ tabName: string; classes: I_Class[] }> = ({ classes }) => {
   return (
     <div className="grid grid-cols-4 gap-2 px-2 sm:px-8 md:grid-cols-7 lg:grid-cols-9 2xl:px-32">
-      <h2 className="col-span-full">Class One</h2>
-      {Array.from({ length: 4 }).map((_, i) => (
-        <StudentProfile />
-      ))}
-      <h2 className="col-span-full">Class Two</h2>
-      {Array.from({ length: 9 }).map((_, i) => (
-        <StudentProfile />
+      {classes.map((classroom) => (
+        <>
+          <h2 className="col-span-full">Class Two</h2>
+          {Array.from({ length: 9 }).map((_, i) => (
+            <StudentProfile />
+          ))}
+        </>
       ))}
     </div>
   );

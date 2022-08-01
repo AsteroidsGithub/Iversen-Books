@@ -11,15 +11,15 @@ export default async (token: string): Promise<I_User | undefined> =>
 
       const user = await prisma.user.findFirst({
         where: {
-          id: decoded.id,
+          Id: decoded.id,
         },
         select: {
-          id: true,
-          firstName: true,
-          lastName: true,
-          email: true,
-          password: true,
-          permissions: true,
+          Id: true,
+          FirstName: true,
+          LastName: true,
+          Email: true,
+          Password: true,
+          Permissions: true,
         },
       });
 

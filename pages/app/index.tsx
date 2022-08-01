@@ -1,6 +1,6 @@
 import React from 'react';
 import type { GetServerSideProps, NextPage } from 'next';
-import { I_User } from '@Interfaces/users';
+import { I_Class, I_User } from '@Interfaces/users';
 import useSharedState from '@Middleware/useSharedState';
 import getUser from '@Utilities/getUser';
 import BooksTab from '@Views/books.tab';
@@ -10,9 +10,16 @@ import prisma from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 import { I_BookJSON } from '@Interfaces/books';
 
-const HomePage: NextPage<{ user: I_User; books: I_BookJSON[] }> = ({ user, books }) => {
+const HomePage: NextPage<{ user: I_User; books: I_BookJSON[]; classes: I_Class[] }> = ({
+  user,
+  books,
+  classes,
+}) => {
   const { activeTab, setUser } = useSharedState();
-  const tabs = [<BooksTab tabName="Books" books={books} />, <StudentsTab tabName="Students" />];
+  const tabs = [
+    <BooksTab tabName="Books" books={books} />,
+    <StudentsTab tabName="Students" classes={classes} />,
+  ];
 
   // This is a bit of a hack, but it's the only way to get
   // the user without calling GetServerSideProps.
@@ -30,12 +37,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!user) return { redirect: { destination: '/' }, props: {} };
 
   const books = await prisma.book.findMany();
-  if (!books) return { redirect: { destination: '/' }, props: {} };
+
+  const classes = await prisma.class.findMany({
+    where: {
+      TeacherId: user.Id,
+    },
+    include: {
+      Students: {
+        select: {
+          Id: true,
+          FirstName: true,
+          LastName: true,
+        },
+      },
+    },
+  });
 
   return {
     props: {
       user,
-      books: books.map((book) => book.rawJSON),
+      books: books.map((book) => book.Json),
+      classes,
     },
   };
 };
