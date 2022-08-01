@@ -1,5 +1,6 @@
 import { I_PillInformation } from '@Interfaces/books';
 import { I_User } from '@Interfaces/users';
+import { User } from '@Services/database';
 import { useState } from 'react';
 import { useBetween } from 'use-between';
 
@@ -13,7 +14,7 @@ const useSharedState = () => {
     { count: 0, value: 'Photo / Context Aware', color: 'amber' },
   ]);
   const [activeModal, setActiveModal] = useState<JSX.Element | null>(null);
-  const [user, setUser] = useState<I_User>();
+  const [user, setUser] = useState<User>();
   return {
     activeTab,
     setActiveTab,
