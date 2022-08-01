@@ -1,5 +1,19 @@
-/.DS_Store
+# Ignore anything to do with the macOS 
+# file system.
+**/.DS_Store
+**.log
+
+# Project File chaches for Node, Next
+# and Service Worker.
 /.next
 /node_modules
-public/sw.js.map
+/public/sw.js.map
+
+# Super secret stuff.
 .env
+
+# Ignores Prisma migrations expect the 
+# lock file as it is require for database
+# migrations to happen automatically.
+/prisma/migrations/*
+!/prisma/migrations/migration_lock.toml
