@@ -22,45 +22,45 @@ enum wordLevel {
 }
 
 model User {
-  Id          Int        @id @default(autoincrement())
-  FirstName   String
-  LastName    String
-  Email       String     @unique
-  Password    String
-  Permissions UserRole[]
-  Class       Class[]
+  id          Int        @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String     @unique
+  password    String
+  permissions UserRole[]
+  classes       Class[]
 }
 
 model Class {
-  Id        Int       @id @default(autoincrement())
-  Name      String
-  Students  Student[]
-  Teacher   User      @relation(fields: [TeacherId], references: [Id])
-  TeacherId Int
+  id        Int       @id @default(autoincrement())
+  name      String
+  students  Student[]
+  teacher   User      @relation(fields: [teacherId], references: [id])
+  teacherId Int
 }
 
 model Student {
-  Id              Int               @id @default(autoincrement())
-  FirstName       String
-  LastName        String
-  Class           Class             @relation(fields: [ClassId], references: [Id])
-  ClassId         Int
-  StudentProgress StudentProgress[]
+  id              Int               @id @default(autoincrement())
+  firstName       String
+  lastName        String
+  class           Class             @relation(fields: [classId], references: [id])
+  classId         Int
+  studentProgress StudentProgress[]
 }
 
 model Book {
-  Id              Int               @id @default(autoincrement())
-  Json            Json
-  Url             String
-  StudentProgress StudentProgress[]
+  id              Int               @id @default(autoincrement())
+  json            Json
+  url             String
+  studentProgress StudentProgress[]
 }
 
 model StudentProgress {
-  Id             Int      @id @default(autoincrement())
-  Time           Int      @default(0)
-  StruggledWords String[]
-  Book           Book     @relation(fields: [BookId], references: [Id])
-  BookId         Int
-  Student        Student  @relation(fields: [StudentId], references: [Id])
-  StudentId      Int
+  id             Int      @id @default(autoincrement())
+  time           Int      @default(0)
+  struggledWords String[]
+  book           Book     @relation(fields: [bookId], references: [id])
+  bookId         Int
+  student        Student  @relation(fields: [studentId], references: [id])
+  studentId      Int
 }
