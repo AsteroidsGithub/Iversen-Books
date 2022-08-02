@@ -2,14 +2,14 @@ import PillHeader from '@Components/PillHeader';
 import Word from '@Components/Word';
 import useSharedState from '@Middleware/useSharedState';
 import checkAuth from '@Utilities/checkAuth';
-import prisma from '@Services/database';
+import prisma, { Book, User } from '@Services/database';
 
 import { GetServerSideProps, NextPage } from 'next';
 import { I_BookJSON } from '@Interfaces/books';
 import { I_User } from '@Interfaces/users';
 import { useEffect } from 'react';
 
-const Post: NextPage<{ user: I_User; book: I_BookJSON }> = ({ user, book }) => {
+const Post: NextPage<{ user: User; book: I_BookJSON }> = ({ user, book }) => {
   const { setUser, setStruggledWords } = useSharedState();
   setUser(user);
 
@@ -75,16 +75,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const { bookId } = context.query;
 
-  const book = await prisma.book.findUnique({
-    where: { id: parseInt(`${bookId}`) },
-  });
+  const book: Book = JSON.parse(
+    JSON.stringify(
+      await prisma.book.findUnique({
+        where: { id: parseInt(`${bookId}`) },
+      }),
+    ),
+  );
 
   if (!book) return { redirect: { destination: '/app' }, props: {} };
 
   return {
     props: {
       user,
-      book: book.rawJSON,
+      book: book.json,
     },
   };
 };

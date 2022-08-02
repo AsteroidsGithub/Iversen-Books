@@ -3,7 +3,7 @@
   "metadata": {
     "title": "Gas Makes It Go",
     "description": "Gas makes everything go",
-    "author": "Dean Iverson",
+    "author": "Sandra Iversen",
     "interventionLevel": 1.2,
     "wordCount": 26,
     "newPhonicSkill": "short a",
@@ -11,7 +11,7 @@
   },
   "refs": {
     "raw": "",
-    "coverArt": "/public/images/gasMakesItGo.png"
+    "coverArt": "/images/gasMakesItGo.png"
   },
   "pages": [
     {

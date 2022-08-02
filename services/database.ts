@@ -23,6 +23,7 @@ export interface Student {
   firstName: string;
   lastName: string;
   class: Class;
+  studentProgress: StudentProgress[];
 }
 
 export interface Class {

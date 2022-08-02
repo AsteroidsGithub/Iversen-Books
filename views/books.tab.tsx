@@ -3,8 +3,8 @@ import { I_BookJSON } from '@Interfaces/books';
 import { NextPage } from 'next';
 
 const BooksTab: NextPage<{ tabName: string; books: I_BookJSON[] }> = ({ books }) => (
-  <div className="grid grid-cols-3 gap-2 px-2 sm:px-8 md:grid-cols-4 lg:grid-cols-6 2xl:px-32">
-    <h2 className="col-span-full ">Continue</h2>
+  <div className="grid grid-cols-3 gap-2 px-2  sm:px-8 md:grid-cols-4 lg:grid-cols-6 2xl:px-32">
+    <h1 className="col-span-full pb-2 pt-4  text-2xl font-bold">Continue</h1>
     <div className="relative col-span-full flex w-full snap-x snap-mandatory gap-6 overflow-x-auto">
       {books.map((book, i) => (
         <div className="flex shrink-0 snap-center flex-row" key={i}>
@@ -19,8 +19,7 @@ const BooksTab: NextPage<{ tabName: string; books: I_BookJSON[] }> = ({ books })
         </div>
       ))}
     </div>
-
-    <h2 className="col-span-full">Books</h2>
+    <h1 className="col-span-full pb-2 pt-4 text-2xl font-bold">All Books</h1>
     {books.map((book, i) => (
       <BookCover book={book} key={i} />
     ))}
