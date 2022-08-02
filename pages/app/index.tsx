@@ -47,7 +47,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         include: {
           students: {
             include: {
-              studentProgress: true,
+              studentProgress: {
+                include: {
+                  book: true,
+                },
+              },
             },
           },
         },
