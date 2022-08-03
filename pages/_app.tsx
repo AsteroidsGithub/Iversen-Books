@@ -1,9 +1,8 @@
-import ModalController from '@Components/ModalController';
-import useSharedState from '@Middleware/useSharedState';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-
+import ModalController from '@Components/ModalController';
+import useSharedState from '@Middleware/useSharedState';
 import '../styles/globals.css';
 
 export default ({ Component, pageProps }: AppProps) => {

@@ -20,7 +20,6 @@
       "@Interfaces/*": ["./interfaces/*"],
       "@Middleware/*": ["./middleware/*"],
       "@Services/*": ["./services/*"],
-      "@TabbedPages/*": ["./tabbedPages/*"],
       "@Utilities/*": ["./utilities/*"],
       "@Views/*": ["./views/*"]
     }

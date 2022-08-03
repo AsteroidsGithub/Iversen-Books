@@ -1,7 +1,6 @@
-import useSharedState from '@Middleware/useSharedState';
-import { Student } from '@Services/database';
 import { useRouter } from 'next/router';
-
+import { Student } from '@Services/database';
+import useSharedState from '@Middleware/useSharedState';
 
 const PillHeader: React.FC<{ student: Student }> = ({ student }) => {
   const { struggledWords, user } = useSharedState();

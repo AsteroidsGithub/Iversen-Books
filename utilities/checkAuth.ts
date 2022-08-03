@@ -1,6 +1,5 @@
-import prisma, { User } from '@Services/database';
 import jwt from 'jsonwebtoken';
-
+import prisma, { User } from '@Services/database';
 import { I_User } from '../interfaces/users';
 
 export default async (token: string): Promise<User | undefined> =>

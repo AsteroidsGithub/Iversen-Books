@@ -3,7 +3,6 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-
 import landingPageImage from '../public/images/login-head.png';
 import elenSpin from '../public/images/spin.gif';
 

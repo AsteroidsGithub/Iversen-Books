@@ -1,7 +1,6 @@
 import { UserRole } from '@prisma/client';
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
-
 import PrismaClient from '../../../services/database';
 
 const validateSignUpData = (user: {
