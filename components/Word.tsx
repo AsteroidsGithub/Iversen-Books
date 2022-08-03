@@ -1,4 +1,4 @@
-import { I_BookWord, E_WordTypeColor } from '@Interfaces/books';
+import { E_WordTypeColor, I_BookWord } from '@Interfaces/books';
 import useSharedState from '@Middleware/useSharedState';
 import { useState } from 'react';
 

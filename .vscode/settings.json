@@ -1,13 +1,10 @@
 {
   "files.exclude": {
     "node_modules/": true,
-    ".next/":true,
-    "LICENSE.md":true,
-    "next-env.d.ts":true,
+    ".next/": true,
+    "LICENSE.md": true,
+    "next-env.d.ts": true
   },
   "editor.formatOnSave": true,
-  "cSpell.words": [
-    "Iversen",
-    "Voss"
-  ],
+  "cSpell.words": ["Iversen", "Voss"]
 }

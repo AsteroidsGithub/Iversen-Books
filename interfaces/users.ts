@@ -1,4 +1,5 @@
 import { UserRole } from '@prisma/client';
+
 import { I_BookJSON } from './books';
 
 export interface I_User {
@@ -40,4 +41,3 @@ export interface I_StudentProgress {
   Time: number;
   StruggledWords: String[];
 }
-

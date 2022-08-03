@@ -1,7 +1,8 @@
-import PrismaClient from '../../../services/database';
+import { UserRole } from '@prisma/client';
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { UserRole } from '@prisma/client';
+
+import PrismaClient from '../../../services/database';
 
 const validateSignUpData = (user: {
   email: string;

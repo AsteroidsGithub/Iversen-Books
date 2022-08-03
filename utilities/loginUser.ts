@@ -1,6 +1,6 @@
-import { NextApiResponse } from 'next';
-import jwt from 'jsonwebtoken';
 import { serialize } from 'cookie';
+import jwt from 'jsonwebtoken';
+import { NextApiResponse } from 'next';
 
 export default (
   res: NextApiResponse,

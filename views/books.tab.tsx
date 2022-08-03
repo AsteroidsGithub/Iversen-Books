@@ -26,5 +26,4 @@ const BooksTab: NextPage<{ tabName: string; books: I_BookJSON[] }> = ({ books })
   </div>
 );
 
-
 export default BooksTab;

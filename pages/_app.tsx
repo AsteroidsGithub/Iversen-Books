@@ -1,9 +1,10 @@
-import '../styles/globals.css';
-import React from 'react';
+import ModalController from '@Components/ModalController';
+import useSharedState from '@Middleware/useSharedState';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import useSharedState from '@Middleware/useSharedState';
-import ModalController from '@Components/ModalController';
+import React from 'react';
+
+import '../styles/globals.css';
 
 export default ({ Component, pageProps }: AppProps) => {
   return (

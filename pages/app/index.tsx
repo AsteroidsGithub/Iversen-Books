@@ -1,13 +1,12 @@
-import React from 'react';
-import type { GetServerSideProps, NextPage } from 'next';
-import { I_Class, I_User } from '@Interfaces/users';
-import useSharedState from '@Middleware/useSharedState';
-import BooksTab from '@Views/books.tab';
-import StudentsTab from '@Views/students.tab';
 import TabHeader from '@Components/TabHeader';
+import { I_BookJSON } from '@Interfaces/books';
+import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Class, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
-import { I_BookJSON } from '@Interfaces/books';
+import BooksTab from '@Views/books.tab';
+import StudentsTab from '@Views/students.tab';
+import type { GetServerSideProps, NextPage } from 'next';
+import React from 'react';
 
 const HomePage: NextPage<{ user: User; books: I_BookJSON[]; classes: Class[] }> = ({
   user,

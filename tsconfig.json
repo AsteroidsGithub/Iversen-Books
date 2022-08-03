@@ -22,7 +22,7 @@
       "@Services/*": ["./services/*"],
       "@TabbedPages/*": ["./tabbedPages/*"],
       "@Utilities/*": ["./utilities/*"],
-      "@Views/*": ["./views/*"],
+      "@Views/*": ["./views/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/socket.ts"],

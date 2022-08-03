@@ -1,7 +1,7 @@
 import useSharedState from '@Middleware/useSharedState';
 import { Class, Student } from '@Services/database';
-import { NextPage } from 'next';
 import ProgressReportList from '@Views/progressReports.modal';
+import { NextPage } from 'next';
 
 const StudentsTab: NextPage<{ tabName: string; classes: Class[] }> = ({ classes }) => {
   const { setActiveModal } = useSharedState();
