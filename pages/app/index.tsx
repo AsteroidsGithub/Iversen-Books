@@ -8,14 +8,15 @@ import StudentsTab from '@Views/students.tab';
 import type { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
 
-const HomePage: NextPage<{ user: User; books: I_BookJSON[]; classes: Class[] }> = ({
+
+const HomePage: NextPage<{ user: User; books: Book[]; classes: Class[] }> = ({
   user,
   books,
   classes,
 }) => {
   const { activeTab, setUser } = useSharedState();
   const tabs = [
-    <BooksTab tabName="Books" books={books} />,
+    <BooksTab tabName="Books" books={books} classes={classes} />,
     <StudentsTab tabName="Students" classes={classes} />,
   ];
 
@@ -61,7 +62,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       user,
-      books: books.map((book) => book.json),
+      books,
       classes,
     },
   };

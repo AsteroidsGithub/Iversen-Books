@@ -3,12 +3,13 @@ import Word from '@Components/Word';
 import { I_BookJSON } from '@Interfaces/books';
 import { I_User } from '@Interfaces/users';
 import useSharedState from '@Middleware/useSharedState';
-import prisma, { Book, User } from '@Services/database';
+import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 import { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 
-const Post: NextPage<{ user: User; book: I_BookJSON }> = ({ user, book }) => {
+
+const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
   const { setUser, setStruggledWords } = useSharedState();
   setUser(user);
 
@@ -28,7 +29,7 @@ const Post: NextPage<{ user: User; book: I_BookJSON }> = ({ user, book }) => {
 
   return (
     <>
-      <PillHeader />
+      <PillHeader student={student} />
       <div>
         <div>
           <h2>Key</h2>
@@ -46,7 +47,7 @@ const Post: NextPage<{ user: User; book: I_BookJSON }> = ({ user, book }) => {
             <br />
           </p>
         </div>
-        {book.pages.map((page, a) => (
+        {book.json.pages.map((page, a) => (
           <div key={a}>
             <h2>
               Page {page.start}/{page.end}
@@ -72,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await checkAuth(context.req.cookies.auth);
   if (!user) return { redirect: { destination: '/' }, props: {} };
 
-  const { bookId } = context.query;
+  const { bookId, studentId } = context.query;
 
   const book: Book = JSON.parse(
     JSON.stringify(
@@ -82,12 +83,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ),
   );
 
-  if (!book) return { redirect: { destination: '/app' }, props: {} };
+  const student: Student = JSON.parse(
+    JSON.stringify(
+      await prisma.student.findUnique({
+        where: { id: parseInt(`${studentId}`) },
+      }),
+    ),
+  );
+
+  if (!book || !student) return { redirect: { destination: '/app' }, props: {} };
 
   return {
     props: {
       user,
-      book: book.json,
+      student,
+      book: book,
     },
   };
 };

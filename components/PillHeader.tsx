@@ -1,7 +1,9 @@
 import useSharedState from '@Middleware/useSharedState';
+import { Student } from '@Services/database';
 import { useRouter } from 'next/router';
 
-const PillHeader: React.FC = () => {
+
+const PillHeader: React.FC<{ student: Student }> = ({ student }) => {
   const { struggledWords, user } = useSharedState();
   const router = useRouter();
 
@@ -17,7 +19,10 @@ const PillHeader: React.FC = () => {
           ⇠
         </button>
         <h1 className="inline align-middle font-serif text-2xl font-bold text-gray-800">
-          Evaluating <span className="text-blue-500">{user?.firstName}</span>
+          Evaluating{' '}
+          <span className="text-blue-500">
+            {student.firstName} {student.lastName}
+          </span>
         </h1>
       </div>
 
