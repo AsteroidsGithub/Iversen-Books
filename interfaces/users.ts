@@ -1,5 +1,6 @@
-import { UserRole } from '@prisma/client';
 import { I_BookJSON } from './books';
+
+import { UserRole } from '@prisma/client';
 
 export interface I_User {
   Id: number;

@@ -1,7 +1,7 @@
 import StartReadingModal from '@Views/startReading.modal';
-import { Book, Class } from '@Services/database';
+
 import useSharedState from '@Middleware/useSharedState';
-import { I_BookJSON } from '@Interfaces/books';
+import { Book, Class } from '@Services/database';
 
 const BookCover: React.FC<{ book: Book; classes: Class[] }> = ({ book, classes }) => {
   const { setActiveModal } = useSharedState();

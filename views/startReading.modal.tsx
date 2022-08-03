@@ -1,7 +1,8 @@
+import useSharedState from '@Middleware/useSharedState';
+import { Book, Class } from '@Services/database';
+
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { Book, Class } from '@Services/database';
-import useSharedState from '@Middleware/useSharedState';
 
 const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, classes }) => {
   const router = useRouter();

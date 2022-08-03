@@ -21,6 +21,8 @@
       "@Middleware/*": ["./middleware/*"],
       "@Services/*": ["./services/*"],
       "@Utilities/*": ["./utilities/*"],
+      "@Styles/*": ["./styles/*"],
+      "@Public/*": ["./public/*"],
       "@Views/*": ["./views/*"]
     }
   },

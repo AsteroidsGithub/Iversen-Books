@@ -1,7 +1,8 @@
+import PrismaClient from '@Services/database';
+import loginUser from '@Utilities/loginUser';
+
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
-import loginUser from '@Utilities/loginUser';
-import PrismaClient from '../../../services/database';
 
 const validateLoginData = (user: { email: string; password: string }) =>
   Joi.object({

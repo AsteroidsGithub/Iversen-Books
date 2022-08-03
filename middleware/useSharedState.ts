@@ -1,8 +1,9 @@
+import { User } from '@Services/database';
+
+import { I_PillInformation } from '@Interfaces/books';
+
 import { useState } from 'react';
 import { useBetween } from 'use-between';
-import { User } from '@Services/database';
-import { I_PillInformation } from '@Interfaces/books';
-import { I_User } from '@Interfaces/users';
 
 const useSharedState = () => {
   const [activeTab, setActiveTab] = useState<number>(0);

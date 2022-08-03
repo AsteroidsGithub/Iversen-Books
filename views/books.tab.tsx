@@ -1,7 +1,8 @@
-import { NextPage } from 'next';
 import BookCover from '@Components/BookCover';
+
 import { Book, Class } from '@Services/database';
-import { I_BookJSON } from '@Interfaces/books';
+
+import { NextPage } from 'next';
 
 const BooksTab: NextPage<{ tabName: string; books: Book[]; classes: Class[] }> = ({
   books,

@@ -4,14 +4,14 @@
   "trailingComma": "all",
   "printWidth": 100,
   "importOrder": [
-    "^@Views/(.*)$",
-    "^@Components/(.*)$",
-    "^@Services/(.*)$",
-    "^@Middleware/(.*)$",
-    "^@Utilities/(.*)$",
-    "^@Interfaces/(.*)$",
-    "^[./]"
+    "^(@Styles)/(.*)$",
+    "^(@Views)|(@Components)/(.*)$",
+    "^(@Services)|(@Middleware)|(@Utilities)/(.*)$",
+    "^(@Interfaces)/(.*)$",
+    "^(@Public)/(.*)$",
+    "^[./]",
+    ".*"
   ],
-  "importOrderSeparation": false,
+  "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

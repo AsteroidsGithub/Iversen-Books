@@ -1,10 +1,11 @@
+import landingPageImage from '@Public/images/login-head.png';
+import elenSpin from '@Public/images/spin.gif';
+
 import axios from 'axios';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import landingPageImage from '../public/images/login-head.png';
-import elenSpin from '../public/images/spin.gif';
 
 const LoginPage: NextPage = () => {
   const [formError, setFormError] = useState('');

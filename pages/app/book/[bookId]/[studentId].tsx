@@ -1,12 +1,12 @@
-import { GetServerSideProps, NextPage } from 'next';
-import { useEffect } from 'react';
 import PillHeader from '@Components/PillHeader';
 import Word from '@Components/Word';
-import prisma, { Book, Student, User } from '@Services/database';
+
 import useSharedState from '@Middleware/useSharedState';
+import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
-import { I_BookJSON } from '@Interfaces/books';
-import { I_User } from '@Interfaces/users';
+
+import { GetServerSideProps, NextPage } from 'next';
+import { useEffect } from 'react';
 
 const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
   const { setUser, setStruggledWords } = useSharedState();
