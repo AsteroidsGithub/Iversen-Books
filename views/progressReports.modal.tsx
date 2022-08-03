@@ -9,13 +9,13 @@ const ProgressReportList: React.FC<{
   const { setActiveModal } = useSharedState();
 
   return (
-    <div>
+    <div className="w-full">
       <h1>
         Previous Reports for {student.firstName} {student.lastName}
       </h1>
-      <table>
+      <table className="w-full">
         <thead>
-          <tr>
+          <tr className="bg-slate-400">
             <th>Id</th>
             <th>Book Name</th>
             <th>Book Level</th>
@@ -26,7 +26,7 @@ const ProgressReportList: React.FC<{
         </thead>
         <tbody>
           {student.studentProgress.map((progress: StudentProgress) => (
-            <tr>
+            <tr className="odd:bg-slate-100">
               <td>{progress.id}</td>
               <td>{progress.book.json.metadata.title}</td>
               <td>{progress.book.json.metadata.interventionLevel}</td>
