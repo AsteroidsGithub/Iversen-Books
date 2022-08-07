@@ -1,13 +1,28 @@
 import { I_BookJSON } from '@Interfaces/books';
 
+
+
 import { PrismaClient } from '@prisma/client';
 
 export type UserRole = 'Admin' | 'Publisher' | 'Teacher';
 
+export interface StruggleWord {
+  id: number;
+  count: number;
+  value:
+    | 'New Skill'
+    | 'Previous Skill'
+    | 'New High-Frequency'
+    | 'Previous High-Frequency'
+    | 'Photo / Context Aware';
+  words: string[];
+  StudentProgress: StudentProgress;
+}
+
 export interface StudentProgress {
   id: number;
   time: number;
-  struggledWords: string[];
+  struggledWords: StruggleWord[];
   book: Book;
   student: Student;
 }

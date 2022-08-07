@@ -1,15 +1,18 @@
 import PillHeader from '@Components/PillHeader';
 import Word from '@Components/Word';
 
+
+
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
+import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import { useEffect } from 'react';
 
 const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
-  const { setUser, setStruggledWords } = useSharedState();
+  const { setUser, struggledWords, setStruggledWords } = useSharedState();
   setUser(user);
 
   // useEffect is used to prevent a infinite loop of state updates
@@ -17,11 +20,11 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
   useEffect(
     () =>
       setStruggledWords([
-        { count: 0, value: 'New Skill', color: 'red' },
-        { count: 0, value: 'Previous Skill', color: 'green' },
-        { count: 0, value: 'New High-Frequency', color: 'blue' },
-        { count: 0, value: 'Previous High-Frequency', color: 'pink' },
-        { count: 0, value: 'Photo / Context Aware', color: 'amber' },
+        { count: 0, value: 'New Skill', color: 'red', words: [] },
+        { count: 0, value: 'Previous Skill', color: 'green', words: [] },
+        { count: 0, value: 'New High-Frequency', color: 'blue', words: [] },
+        { count: 0, value: 'Previous High-Frequency', color: 'pink', words: [] },
+        { count: 0, value: 'Photo / Context Aware', color: 'amber', words: [] },
       ]),
     [],
   );
@@ -63,6 +66,22 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
             </p>
           </div>
         ))}
+        <button
+          onClick={() => {
+            axios.post(`/api/${student.id}/postResults`, {
+              studentId: student.id,
+              bookId: book.id,
+              struggledWords: struggledWords.map((word) => ({
+                count: word.count,
+                value: word.value,
+                words: word.words,
+              })),
+              time: 100,
+            });
+          }}
+        >
+          Submit
+        </button>
       </div>
     </>
   );

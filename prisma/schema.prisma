@@ -55,12 +55,21 @@ model Book {
   studentProgress StudentProgress[]
 }
 
+model StruggledWord {
+  id                Int              @id @default(autoincrement())
+  words             String[]
+  value             String
+  count             Int
+  StudentProgress   StudentProgress? @relation(fields: [studentProgressId], references: [id])
+  studentProgressId Int?
+}
+
 model StudentProgress {
-  id             Int      @id @default(autoincrement())
-  time           Int      @default(0)
-  struggledWords String[]
-  book           Book     @relation(fields: [bookId], references: [id])
+  id             Int             @id @default(autoincrement())
+  time           Int             @default(0)
+  struggledWords StruggledWord[]
+  book           Book            @relation(fields: [bookId], references: [id])
   bookId         Int
-  student        Student  @relation(fields: [studentId], references: [id])
+  student        Student         @relation(fields: [studentId], references: [id])
   studentId      Int
 }

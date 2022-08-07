@@ -52,4 +52,5 @@ export interface I_PillInformation {
   count: number;
   value: T_WordType;
   color: E_WordTypeColor | T_WordTypeColor;
+  words: string[];
 }

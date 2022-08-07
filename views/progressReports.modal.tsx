@@ -33,7 +33,7 @@ const ProgressReportList: React.FC<{
               <td>{progress.book.json.metadata.interventionLevel}</td>
               <td>1/1/1970</td>
               <td>233</td>
-              <td>{progress.struggledWords.join(',')}</td>
+              <td>{progress.struggledWords.map(struggleWord => struggleWord.words).flat().join(', ')}</td>
             </tr>
           ))}
         </tbody>

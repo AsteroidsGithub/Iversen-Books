@@ -1,8 +1,13 @@
 import useSharedState from '@Middleware/useSharedState';
 
+
+
 import { E_WordTypeColor, I_BookWord } from '@Interfaces/books';
 
+
+
 import { useState } from 'react';
+
 
 const Word: React.FC<{
   index: number;
@@ -20,6 +25,8 @@ const Word: React.FC<{
         if (!updatedWord) return;
 
         updatedWord.count = updatedWord.count + (isSelected ? -1 : 1);
+
+        updatedWord.words.push(word.value);
 
         // Update the state and color of the word and then loop through the
         // struggledWords array and update the word if its' type matches our
