@@ -1,4 +1,5 @@
 import PrismaClient from '@Services/database';
+import loginUser from '@Utilities/loginUser';
 
 import { UserRole } from '@prisma/client';
 import Joi from 'joi';
@@ -11,7 +12,7 @@ const validateSignUpData = (user: {
   confirmPassword: string;
   firstName: string;
   lastName: string;
-  school: string;
+  // school: string;
   role: 'Admin' | 'Teacher' | 'Student';
 }) =>
   Joi.object({
@@ -21,8 +22,8 @@ const validateSignUpData = (user: {
     confirmPassword: Joi.string().required(),
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
-    school: Joi.string().required(),
-    role: Joi.string().equal(['Admin', 'Teacher', 'Student']).required(),
+    // school: Joi.string().required(),
+    role: Joi.string().equal('Admin', 'Teacher', 'Student').required(),
   }).validate(user);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -30,11 +31,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(403).json({ statusCode: 403, message: 'Bad Request Please Use POST' });
   try {
     const { value, error } = validateSignUpData(req.body);
-    if (error)
-      return res
-        .status(500)
-        .json({ statusCode: 500, message: 'User Validation Error', error: error.message });
-
+    if (error) {
+      console.error(error);
+      return res.status(500).json({ statusCode: 500, message: error.details[0].message });
+    }
     const user = await PrismaClient.user.findUnique({
       where: {
         email: value.email,
@@ -66,6 +66,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Pass the newUser object and SignUp request over
     // to the login route to handle first time signup
     // and then push that back here to finish the request
+    const { token, exp } = await loginUser(res, newUser.id);
+
+    console.log({ message: 'Success', exp });
+    return res.status(200).json({ message: 'Success', exp });
   } catch (error: any) {
     console.error(error);
     res.status(500).json({ statusCode: 500, message: 'Internal Server Error' });

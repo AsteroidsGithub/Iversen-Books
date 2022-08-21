@@ -20,12 +20,17 @@ const LoginPage: NextPage = () => {
           </h1>
           <Formik
             initialValues={{
+              firstName: '',
+              lastName: '',
               email: '',
+              confirmEmail: '',
               password: '',
+              confirmPassword: '',
+              role: 'Teacher',
             }}
             onSubmit={(formData, { setSubmitting }) => {
               axios
-                .post('/api/auth/login', formData)
+                .post('/api/auth/signup', formData)
 
                 .then(() => {
                   router.push('/app');
@@ -43,28 +48,43 @@ const LoginPage: NextPage = () => {
                 {!isSubmitting ? (
                   <>
                     <p className="text-red-600">{formError}</p>
+                    <label className="mt-2 block text-sm font-bold">First Name</label>
+                    <Field type="name" placeholder="First Name" name="firstName" />
+                    <ErrorMessage name="firstName" component="div" className="text-red-500" />
+
+                    <label className="mt-2 block text-sm font-bold">Last Name</label>
+                    <Field type="name" placeholder="Last Name" name="lastName" />
+                    <ErrorMessage name="lastName" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Email</label>
                     <Field type="email" placeholder="Email" name="email" />
                     <ErrorMessage name="email" component="div" className="text-red-500" />
 
+                    <label className="mt-2 block text-sm font-bold">Confirm Email</label>
+                    <Field type="email" placeholder="Confirm Email" name="confirmEmail" />
+                    <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
+
                     <label className="mt-2 block text-sm font-bold">Password</label>
                     <Field type="password" placeholder="Password" name="password" />
                     <ErrorMessage name="password" component="div" className="text-red-500" />
+
+                    <label className="mt-2 block text-sm font-bold">Confirm Password</label>
+                    <Field type="password" placeholder="Confirm Password" name="confirmPassword" />
+                    <ErrorMessage name="confirmPassword" component="div" className="text-red-500" />
 
                     <button
                       type="submit"
                       className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
                     >
-                      Login
+                      Sign Up
                     </button>
 
-                    <label className="mt-2 block text-sm font-bold">Don't have an account?</label>
+                    <label className="mt-2 block text-sm font-bold">Already have an account?</label>
                     <button
                       className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
-                      onClick={() => router.push('/signup')}
+                      onClick={() => router.push('/')}
                     >
-                      Sign Up
+                      Log In
                     </button>
                   </>
                 ) : (
