@@ -1,7 +1,5 @@
-import PillHeader from '@Components/PillHeader';
 import Word from '@Components/Word';
-
-
+import PillHeader from '@Components/headers/PillHeader';
 
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, User } from '@Services/database';
@@ -9,6 +7,7 @@ import checkAuth from '@Utilities/checkAuth';
 
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
+import Router from 'next/router';
 import { useEffect } from 'react';
 
 const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
@@ -68,16 +67,18 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
         ))}
         <button
           onClick={() => {
-            axios.post(`/api/${student.id}/postResults`, {
-              studentId: student.id,
-              bookId: book.id,
-              struggledWords: struggledWords.map((word) => ({
-                count: word.count,
-                value: word.value,
-                words: word.words,
-              })),
-              time: 100,
-            });
+            axios
+              .post(`/api/${student.id}/postResults`, {
+                studentId: student.id,
+                bookId: book.id,
+                struggledWords: struggledWords.map((word) => ({
+                  count: word.count,
+                  value: word.value,
+                  words: word.words,
+                })),
+                time: 100,
+              })
+              .then((data) => Router.push(`/app/report/${data.data.studentProgress.id}`));
           }}
         >
           Submit
