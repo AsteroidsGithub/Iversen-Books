@@ -1,17 +1,24 @@
 import Word from '@Components/Word';
 import PillHeader from '@Components/headers/PillHeader';
 
+
+
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
+
+
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Router from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+
 
 const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
   const { setUser, struggledWords, setStruggledWords } = useSharedState();
+  const [timeElapsed, setTimeElapsed] = useState(0);
   setUser(user);
 
   // useEffect is used to prevent a infinite loop of state updates
@@ -28,12 +35,18 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
     [],
   );
 
+  useEffect(() => {
+    setInterval(() => {
+      setTimeElapsed((seconds) => seconds + 1);
+    }, 1000);
+  }, [true, timeElapsed]);
+
   return (
     <>
       <PillHeader student={student} />
       <div>
         <div>
-          <h2>Key</h2>
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key</h1>
           <p>
             <span className="text-red-500">New Skill</span>
             <br />
@@ -76,7 +89,7 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
                   value: word.value,
                   words: word.words,
                 })),
-                time: 100,
+                time: timeElapsed,
               })
               .then((data) => Router.push(`/app/report/${data.data.studentProgress.id}`));
           }}

@@ -20,12 +20,19 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
   return (
     <>
       <Header student={report.student} />
-      <div>
+      <h1 className=' pb-2 pt-4  text-2xl font-bold'>Summary</h1>
+      <ul>
+        <li>Time: {report.time}</li>
+      </ul>
+      <h1 className=' pb-2 pt-4  text-2xl font-bold'>Struggle Words</h1>
+      <ul>
         {report.struggledWords
-          ?.map((struggleWord) => struggleWord.words)
-          .flat()
-          .join(', ')}
-      </div>
+          ?.map((struggleWord) => (<li>
+            {struggleWord.value}:
+            {struggleWord.words.flat().join(", ")}
+          </li>))}
+      </ul>
+       <h1 className=' pb-2 pt-4  text-2xl font-bold'>Book Assessed</h1>
       <div>
         {report.book.json.pages.map((page, a) => (
           <div key={a}>
