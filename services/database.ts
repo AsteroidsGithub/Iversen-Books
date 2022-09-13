@@ -1,7 +1,5 @@
 import { I_BookJSON } from '@Interfaces/books';
 
-
-
 import { PrismaClient } from '@prisma/client';
 
 export type UserRole = 'Admin' | 'Publisher' | 'Teacher';

@@ -1,15 +1,10 @@
-import Word from '@Components/Word';
-import PillHeader from '@Components/headers/PillHeader';
 import Header from '@Components/headers/ResultsHeader';
 
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, StudentProgress, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
-import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
-import Router from 'next/router';
-import { useEffect } from 'react';
 
 const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report }) => {
   const { setUser, struggledWords, setStruggledWords } = useSharedState();
@@ -20,19 +15,19 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
   return (
     <>
       <Header student={report.student} />
-      <h1 className=' pb-2 pt-4  text-2xl font-bold'>Summary</h1>
+      <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
       <ul>
         <li>Time: {report.time}</li>
       </ul>
-      <h1 className=' pb-2 pt-4  text-2xl font-bold'>Struggle Words</h1>
+      <h1 className=" pb-2 pt-4  text-2xl font-bold">Struggle Words</h1>
       <ul>
-        {report.struggledWords
-          ?.map((struggleWord) => (<li>
-            {struggleWord.value}:
-            {struggleWord.words.flat().join(", ")}
-          </li>))}
+        {report.struggledWords?.map((struggleWord) => (
+          <li>
+            {struggleWord.value}:{struggleWord.words.flat().join(', ')}
+          </li>
+        ))}
       </ul>
-       <h1 className=' pb-2 pt-4  text-2xl font-bold'>Book Assessed</h1>
+      <h1 className=" pb-2 pt-4  text-2xl font-bold">Book Assessed</h1>
       <div>
         {report.book.json.pages.map((page, a) => (
           <div key={a}>

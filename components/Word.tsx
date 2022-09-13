@@ -1,13 +1,8 @@
 import useSharedState from '@Middleware/useSharedState';
 
-
-
 import { E_WordTypeColor, I_BookWord } from '@Interfaces/books';
 
-
-
 import { useState } from 'react';
-
 
 const Word: React.FC<{
   index: number;

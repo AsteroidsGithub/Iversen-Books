@@ -43,17 +43,6 @@ const PillHeader: React.FC<{ student: Student }> = ({ student }) => {
               {word.value}: {word.count}
             </button>
           ))}
-        {/* {tabs.map((tab, index) => (
-          <button
-            key={index}
-            className={`${
-              index === activeTab ? 'border-b-4 border-blue-500 text-lg font-bold' : 'text-lg '
-            } text-lg h-full w-1/2 px-4 py-2 font-semibold text-gray-700 hover:rounded-lg hover:bg-gray-50 hover:text-lg hover:text-blue-500 lg:w-full `}
-            onClick={() => setActiveTab(index)}
-          >
-            {tab.props.tabName}
-          </button>
-        ))} */}
       </div>
     </div>
   );

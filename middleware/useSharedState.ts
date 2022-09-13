@@ -1,14 +1,9 @@
 import { User } from '@Services/database';
 
-
-
 import { I_PillInformation } from '@Interfaces/books';
-
-
 
 import { useState } from 'react';
 import { useBetween } from 'use-between';
-
 
 const useSharedState = () => {
   const [activeTab, setActiveTab] = useState<number>(0);

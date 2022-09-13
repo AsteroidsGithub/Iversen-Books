@@ -1,7 +1,5 @@
 import BookCover from '@Components/BookCover';
 
-
-
 import { Book, Class } from '@Services/database';
 
 import { NextPage } from 'next';

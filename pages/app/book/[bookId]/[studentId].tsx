@@ -1,20 +1,14 @@
 import Word from '@Components/Word';
 import PillHeader from '@Components/headers/PillHeader';
 
-
-
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
-
-
 
 import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
 import Router from 'next/router';
 import { useEffect, useState } from 'react';
-
-
 
 const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, book, student }) => {
   const { setUser, struggledWords, setStruggledWords } = useSharedState();

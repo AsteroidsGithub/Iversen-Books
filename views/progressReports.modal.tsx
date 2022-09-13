@@ -1,10 +1,7 @@
 import useSharedState from '@Middleware/useSharedState';
 import { Student, StudentProgress } from '@Services/database';
 
-
-
 import { useRouter } from 'next/router';
-
 
 const ProgressReportList: React.FC<{
   student: Student;
