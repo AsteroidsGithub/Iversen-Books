@@ -11,19 +11,19 @@ const StudentsTab: NextPage<{ tabName: string; classes: Class[] }> = ({ classes 
     <div className="px-2 sm:px-4 2xl:px-32">
       {classes.map((class_) => (
         <>
-          <h1 className="pb-2 pt-4  text-2xl font-bold">{class_.name}</h1>
-          <table className="w-full table-fixed ">
+          <h1 className=" pb-2 pt-4 text-2xl"><span className=' font-bold'>{class_.name}</span> - { class_.students.length} Students</h1>
+          <table className="w-full rounded-sm table-fixed border-2 border-slate-200">
             <thead>
-              <tr className="bg-slate-400">
-                <th>Id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Reports</th>
+              <tr className="bg-slate-300  ">
+                <th className='text-left px-2 py-2'>Id</th>
+                <th className='text-left px-2 py-2'>First Name</th>
+                <th className='text-left px-2 py-2'>Last Name</th>
+                <th className='text-left px-2 py-2'>Reports</th>
               </tr>
             </thead>
             <tbody>
               {class_.students.map((student: Student) => (
-                <tr className="odd:bg-slate-100">
+                <tr className="odd:bg-slate-100 ">
                   <td>{student.id}</td>
                   <td>{student.firstName}</td>
                   <td>{student.lastName}</td>

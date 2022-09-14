@@ -11,18 +11,19 @@ const ProgressReportList: React.FC<{
 
   return (
     <div className="w-full">
+       <h1 className=" pb-2 pt-4 text-2xl font-bold">Reports for {student.firstName} {student.lastName}</h1>
       <h1>
-        Previous Reports for {student.firstName} {student.lastName}
+        
       </h1>
-      <table className="w-full">
+      <table className="w-full rounded-sm table-fixed overflow-x-auto border-2 border-slate-200">
         <thead>
-          <tr className="bg-slate-400">
-            <th>Id</th>
-            <th>Book Name</th>
-            <th>Book Level</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Struggled Words</th>
+          <tr className="bg-slate-300">
+            <th className='text-left px-2 py-2'>Id</th>
+            <th className='text-left px-2 py-2'>Title</th>
+            <th className='text-left px-2 py-2'>Level</th>
+            <th className='text-left px-2 py-2'>Date</th>
+            <th className='text-left px-2 py-2'>Time</th>
+            <th className='text-left px-2 py-2'>Struggled words</th>
           </tr>
         </thead>
         <tbody>
@@ -42,8 +43,7 @@ const ProgressReportList: React.FC<{
               <td>
                 {progress.struggledWords
                   .map((struggleWord) => struggleWord.words)
-                  .flat()
-                  .join(', ')}
+                  .flat().length}
               </td>
             </tr>
           ))}

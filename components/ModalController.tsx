@@ -6,12 +6,12 @@ const ModalController: React.FC<{}> = ({ children }) => {
     <div>
       {activeModal != null && (
         <div
-          className="flex h-screen w-full items-center justify-center bg-white/70"
+          className="flex h-screen w-full items-center justify-center bg-white/70 backdrop-blur-sm"
           onClick={(e) => {
             if (e.target === e.currentTarget) setActiveModal(null);
           }}
         >
-          <div className="z-10 mx-10 flex h-fit w-full max-w-2xl flex-col items-center rounded border-2 border-gray-100 bg-white py-8 px-6 shadow-md ">
+          <div className="z-10 mx-2 md:mx-8 flex h-fit w-full max-w-4xl flex-col items-center rounded border-2 border-gray-100 bg-white py-8 px-1 md:px-6 shadow-md ">
             {activeModal}
           </div>
         </div>

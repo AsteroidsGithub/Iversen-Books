@@ -27,8 +27,9 @@ const PillHeader: React.FC<{ student: Student }> = ({ student }) => {
       </div>
 
       <div className="col-start-3 row-start-1 flex justify-end space-x-1 self-center py-3">
-        <h2 className="font-serif text-xl font-bold text-gray-800">{user?.firstName}</h2>
-        <div className="h-8 w-8 rounded-full bg-gray-500" />
+        <h2 className="font-serif text-xl">
+          Signed in as <span className=" font-bold text-gray-800">{user?.firstName}</span>
+        </h2>
       </div>
 
       <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory no-scrollbar space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
