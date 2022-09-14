@@ -1,10 +1,15 @@
 import Header from '@Components/headers/ResultsHeader';
 
+
+
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, StudentProgress, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
+
+
 import { GetServerSideProps, NextPage } from 'next';
+
 
 const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report }) => {
   const { setUser, struggledWords, setStruggledWords } = useSharedState();
@@ -17,7 +22,13 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
       <Header student={report.student} />
       <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
       <ul>
-        <li>Time: {report.time}</li>
+        <li>
+          Student: {report.student.firstName} {report.student.lastName}
+        </li>
+        <li>Book: {report.book.json.metadata.title}</li>
+        <li>Reading Level: {report.book.json.metadata.interventionLevel}</li>
+        <li>Date: {new Date(report.date).toLocaleDateString()}</li>
+        <li>Time: {new Date(report.time * 1000).toISOString().substring(14, 19)}</li>
       </ul>
       <h1 className=" pb-2 pt-4  text-2xl font-bold">Struggle Words</h1>
       <ul>
@@ -60,6 +71,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       await prisma.studentProgress.findUnique({
         where: { id: parseInt(`${reportId}`) },
         select: {
+          id: true,
+          time: true,
+          date: true,
           book: true,
           student: true,
           struggledWords: true,

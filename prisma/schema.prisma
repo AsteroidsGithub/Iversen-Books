@@ -66,6 +66,7 @@ model StruggledWord {
 
 model StudentProgress {
   id             Int             @id @default(autoincrement())
+  date           DateTime        @default(now())
   time           Int             @default(0)
   struggledWords StruggledWord[]
   book           Book            @relation(fields: [bookId], references: [id])

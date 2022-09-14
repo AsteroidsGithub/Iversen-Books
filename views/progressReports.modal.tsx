@@ -21,14 +21,14 @@ const ProgressReportList: React.FC<{
             <th>Book Name</th>
             <th>Book Level</th>
             <th>Date</th>
-            <th>Score</th>
+            <th>Time</th>
             <th>Struggled Words</th>
           </tr>
         </thead>
         <tbody>
           {student.studentProgress.map((progress: StudentProgress) => (
             <tr
-              className="odd:bg-slate-100"
+              className="odd:bg-slate-100 cursor-pointer hover:bg-slate-200"
               onClick={() => {
                 setActiveModal(null);
                 router.push(`/app/report/${progress.id}`);
@@ -37,8 +37,8 @@ const ProgressReportList: React.FC<{
               <td>{progress.id}</td>
               <td>{progress.book.json.metadata.title}</td>
               <td>{progress.book.json.metadata.interventionLevel}</td>
-              <td>1/1/1970</td>
-              <td>233</td>
+              <td>{new Date(progress.date).toLocaleDateString()}</td>
+              <td>{new Date(progress.time * 1000).toISOString().substring(14, 19)}</td>
               <td>
                 {progress.struggledWords
                   .map((struggleWord) => struggleWord.words)
