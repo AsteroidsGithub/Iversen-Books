@@ -1,15 +1,10 @@
-import Header from '@Components/headers/ResultsHeader';
-
-
+import Header from '@Components/headers/Header';
 
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, StudentProgress, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
-
-
 import { GetServerSideProps, NextPage } from 'next';
-
 
 const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report }) => {
   const { setUser, struggledWords, setStruggledWords } = useSharedState();
@@ -19,7 +14,16 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
 
   return (
     <>
-      <Header student={report.student} />
+      <Header
+        title={
+          <>
+            Results for{' '}
+            <span className="text-blue-500">
+              {report.student.firstName} {report.student.lastName}
+            </span>{' '}
+          </>
+        }
+      />
       <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
       <ul>
         <li>

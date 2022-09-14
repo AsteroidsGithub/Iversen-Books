@@ -3,7 +3,7 @@ import { Student } from '@Services/database';
 
 import { useRouter } from 'next/router';
 
-const ResultsHeader: React.FC<{ student: Student }> = ({ student }) => {
+const Header: React.FC<{ title: JSX.Element }> = ({ title }) => {
   const { user } = useSharedState();
   const router = useRouter();
 
@@ -18,12 +18,7 @@ const ResultsHeader: React.FC<{ student: Student }> = ({ student }) => {
         >
           ⇠
         </button>
-        <h1 className="inline align-middle font-serif text-2xl font-bold text-gray-800">
-          Results for{' '}
-          <span className="text-blue-500">
-            {student.firstName} {student.lastName}
-          </span>
-        </h1>
+        <h1 className="inline align-middle font-serif text-2xl font-bold text-gray-800">{title}</h1>
       </div>
 
       <div className="col-start-3 row-start-1 flex justify-end space-x-1 self-center py-3">
@@ -34,4 +29,4 @@ const ResultsHeader: React.FC<{ student: Student }> = ({ student }) => {
   );
 };
 
-export default ResultsHeader;
+export default Header;
