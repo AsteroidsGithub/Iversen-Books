@@ -1,0 +1,95 @@
+{
+  "refs": { "raw": "", "coverArt": "/books/covers/GasMakesItGo.png" },
+  "pages": [
+    {
+      "end": 3,
+      "lines": [
+        [
+          { "type": "New Skill", "value": "Gas" },
+          { "type": "Photo / Context Aware", "value": "makes" },
+          { "type": "Previous High-Frequency", "value": "this" },
+          { "type": "Photo / Context Aware", "value": "balloon" },
+          { "type": "Previous High-Frequency", "value": "go." }
+        ]
+      ],
+      "start": 2
+    },
+    {
+      "end": 5,
+      "lines": [
+        [
+          { "type": "New Skill", "value": "Gas" },
+          { "type": "Photo / Context Aware", "value": "makes" },
+          { "type": "Previous High-Frequency", "value": "this" },
+          { "type": "Photo / Context Aware", "value": "car" },
+          { "type": "Previous High-Frequency", "value": "go." }
+        ]
+      ],
+      "start": 4
+    },
+    {
+      "end": 7,
+      "lines": [
+        [
+          { "type": "New Skill", "value": "Gas" },
+          { "type": "Photo / Context Aware", "value": "makes" },
+          { "type": "Previous High-Frequency", "value": "this" },
+          { "type": "Photo / Context Aware", "value": "stove" },
+          { "type": "Previous High-Frequency", "value": "go." }
+        ]
+      ],
+      "start": 6
+    },
+    {
+      "end": 9,
+      "lines": [
+        [
+          { "type": "New Skill", "value": "Gas" },
+          { "type": "Photo / Context Aware", "value": "makes" },
+          { "type": "Previous High-Frequency", "value": "this" },
+          { "type": "Photo / Context Aware", "value": "fire" },
+          { "type": "Previous High-Frequency", "value": "go." }
+        ]
+      ],
+      "start": 8
+    },
+    {
+      "end": 11,
+      "lines": [
+        [
+          { "type": "New Skill", "value": "Gas" },
+          { "type": "Photo / Context Aware", "value": "makes" },
+          { "type": "Previous High-Frequency", "value": "this" },
+          { "type": "Photo / Context Aware", "value": "fire" },
+          { "type": "Previous High-Frequency", "value": "go," },
+          { "type": "Photo / Context Aware", "value": "too." }
+        ]
+      ],
+      "start": 10
+    }
+  ],
+  "version": 1,
+  "metadata": {
+    "title": "Gas Makes It Go",
+    "author": "Sandra Iversen",
+    "wordCount": 26,
+    "description": "Gas makes everything go",
+    "newPhonicSkill": "short a",
+    "interventionLevel": 1.2,
+    "newHighFrequencyWord": ""
+  },
+  "comprehension": {
+    "literal": [
+      "Does gas make a fire go?",
+      "What makes a balloon go?",
+      "Which other things rely on gas to make them go?",
+      "Can you have a gas fire outside?"
+    ],
+    "inferential": [
+      "What other things can make a fire go?",
+      "Why do you think people have outside fires?",
+      "What could happen if you get too close to a stove with pots on it?",
+      "Would you like to go in a hot air balloon? Why or why not?"
+    ]
+  }
+}

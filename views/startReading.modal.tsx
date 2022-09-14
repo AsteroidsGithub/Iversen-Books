@@ -7,8 +7,8 @@ import { useState } from 'react';
 const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, classes }) => {
   const router = useRouter();
   const { setActiveModal } = useSharedState();
-  const [selectedClass, setSelectedClass] = useState<number>(classes[0].id);
-  const [selectedStudent, setSelectedStudent] = useState<number>(0);
+  const [selectedClass, setSelectedClass] = useState<number | undefined>();
+  const [selectedStudent, setSelectedStudent] = useState<number |undefined>(0);
 
   return (
     <div>
@@ -26,6 +26,7 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
             value={selectedClass}
             onChange={(e) => setSelectedClass(Number(e.target.value))}
           >
+            <option value={undefined}>Select a Class</option>
             {classes.map((c, i) => (
               <option key={i} value={i}>
                 {c.name}
@@ -40,11 +41,16 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
             value={selectedStudent}
             onChange={(e) => setSelectedStudent(Number(e.target.value))}
           >
-            {classes[selectedClass].students.map((c, i) => (
+            {(selectedClass == undefined) ?
+              (<option value={undefined}>Select a Student</option>)
+              : 
+                classes[selectedClass].students.map((c, i) => (
               <option key={i} value={c.id}>
                 {c.firstName}
               </option>
-            ))}
+            ))
+            
+            }
           </select>
         </div>
       </div>

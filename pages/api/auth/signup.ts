@@ -1,7 +1,6 @@
-import PrismaClient from '@Services/database';
+import PrismaClient, { UserRole } from '@Services/database';
 import loginUser from '@Utilities/loginUser';
 
-import { UserRole } from '@prisma/client';
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -50,13 +49,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         message: 'User Exists',
       });
 
+    console.log(value);
+
     const newUser = await PrismaClient.user.create({
       data: {
         firstName: value.firstName,
         lastName: value.lastName,
         email: value.email,
         password: value.password, // TODO: Encrypt this before production
-        permissions: value.role as UserRole,
       },
       select: {
         id: true,

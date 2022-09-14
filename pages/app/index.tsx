@@ -1,5 +1,6 @@
 import TabHeader from '@Components/headers/TabHeader';
 import BooksTab from '@Views/books.tab';
+import PublishTab from '@Views/publish.tab';
 import StudentsTab from '@Views/students.tab';
 
 import useSharedState from '@Middleware/useSharedState';
@@ -15,10 +16,13 @@ const HomePage: NextPage<{ user: User; books: Book[]; classes: Class[] }> = ({
   classes,
 }) => {
   const { activeTab, setUser } = useSharedState();
-  const tabs = [
+  const tabs: JSX.Element[] = [
     <BooksTab tabName="Books" books={books} classes={classes} />,
     <StudentsTab tabName="Students" classes={classes} />,
   ];
+
+  if (user.permissions == 'Publisher')
+    tabs.push(<PublishTab tabName="Publish" books={books} classes={classes} />);
 
   // This is a bit of a hack, but it's the only way to get
   // the user without calling GetServerSideProps.

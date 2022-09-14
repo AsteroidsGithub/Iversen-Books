@@ -31,7 +31,7 @@ const PillHeader: React.FC<{ student: Student }> = ({ student }) => {
         <div className="h-8 w-8 rounded-full bg-gray-500" />
       </div>
 
-      <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory  space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
+      <div className="col-span-3 col-start-1 row-start-2 flex h-full snap-x snap-mandatory no-scrollbar space-x-2 overflow-x-auto align-middle  lg:col-span-1 lg:col-start-2 lg:row-start-1 ">
         {struggledWords
           // Sort the highest count first for ease of use
           .sort((a, b) => b.count - a.count)

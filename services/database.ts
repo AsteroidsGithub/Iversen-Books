@@ -1,9 +1,6 @@
 import { I_BookJSON } from '@Interfaces/books';
 
-
-
 import { PrismaClient } from '@prisma/client';
-
 
 export type UserRole = 'Admin' | 'Publisher' | 'Teacher';
 
@@ -57,7 +54,7 @@ export interface User {
   lastName: string;
   email: string;
   password: string;
-  permissions: UserRole[];
+  permissions: UserRole;
   classes: Class[];
 }
 
