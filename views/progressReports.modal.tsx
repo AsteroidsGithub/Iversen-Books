@@ -29,7 +29,7 @@ const ProgressReportList: React.FC<{
         <tbody>
           {student.studentProgress.map((progress: StudentProgress) => (
             <tr
-              className="odd:bg-slate-100 cursor-pointer hover:bg-slate-200"
+              className="odd:bg-slate-100 cursor-pointer hover:bg-blue-100 hover:border-2 hover:border-blue-200"
               onClick={() => {
                 setActiveModal(null);
                 router.push(`/app/report/${progress.id}`);

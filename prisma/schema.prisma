@@ -55,9 +55,17 @@ model Book {
   studentProgress StudentProgress[]
 }
 
+model Word {
+  id              Int            @id @default(autoincrement())
+  word            String
+  selfCorrected   Boolean        @default(false)
+  StruggledWord   StruggledWord? @relation(fields: [struggledWordId], references: [id])
+  struggledWordId Int?
+}
+
 model StruggledWord {
   id                Int              @id @default(autoincrement())
-  words             String[]
+  words             Word[]
   value             String
   count             Int
   StudentProgress   StudentProgress? @relation(fields: [studentProgressId], references: [id])

@@ -8,7 +8,7 @@ const BookCover: React.FC<{ book: Book; classes: Class[] }> = ({ book, classes }
 
   return (
     <div
-      className=" flex w-full  flex-col items-center p-1  pb-2 justify-center border-2 border-slate-100 rounded shadow-sm bg-white hover:bg-gray-50 cursor-pointer"
+      className=" flex w-full  flex-col items-center p-1  pb-2 justify-center border-2 border-slate-200 rounded  bg-white hover:scale-105 hover:shadow cursor-pointer"
       onClick={() => {
         setActiveModal(<StartReadingModal book={book} classes={classes} />);
       }}

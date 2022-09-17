@@ -29,10 +29,10 @@ const HomePage: NextPage<{ user: User; books: Book[]; classes: Class[] }> = ({
   setUser(user);
 
   return (
-    <>
+    <div className='bg-slate-50 min-h-screen'>
       <TabHeader tabs={tabs} />
       {tabs[activeTab]}
-    </>
+    </div>
   );
 };
 

@@ -1,7 +1,10 @@
 import PrismaClient from '@Services/database';
 
+
+
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
+
 
 const validateReportData = (report: {
   studentId: number;
@@ -16,7 +19,13 @@ const validateReportData = (report: {
       .items(
         Joi.object({
           count: Joi.number().required(),
-          words: Joi.array().items(Joi.string()),
+          words: Joi.array().items(
+            Joi.object({
+              id: Joi.number(),
+              word: Joi.string().required(),
+              selfCorrected: Joi.boolean(),
+            }),
+          ),
           value: Joi.string()
             .allow(
               'New Skill',
@@ -61,9 +70,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
         struggledWords: {
           create: value.struggledWords.map(
-            (struggledWord: { count: number; words: string[]; value: string }) => ({
+            (struggledWord: {
+              count: number;
+              words: { word: string; selfCorrected: boolean }[];
+              value: string;
+            }) => ({
               count: struggledWord.count,
-              words: struggledWord.words,
+              words: {
+                create: [
+                  ...struggledWord.words.map((words) => ({
+                    word: words.word,
+                    selfCorrected: words.selfCorrected,
+                  })),
+                ],
+              },
+
               value: struggledWord.value,
             }),
           ),

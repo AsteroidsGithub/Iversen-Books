@@ -23,7 +23,7 @@ const StudentsTab: NextPage<{ tabName: string; classes: Class[] }> = ({ classes 
             </thead>
             <tbody>
               {class_.students.map((student: Student) => (
-                <tr className="odd:bg-slate-100 ">
+                <tr className="odd:bg-slate-100 hover:bg-blue-100 hover:border-2 hover:border-blue-200">
                   <td>{student.id}</td>
                   <td>{student.firstName}</td>
                   <td>{student.lastName}</td>

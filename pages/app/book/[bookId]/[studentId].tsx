@@ -40,19 +40,22 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
       <PillHeader student={student} />
       <div>
         <div>
-          <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key</h1>
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key and Marking Instructions</h1>
+
           <p>
-            <span className="text-red-500">New Skill</span>
+            Click on a word for a student mistake, click again if the student self corrected the mistake. Words will highlight to the following key.
+            <br/>
+            <span className="text-red-500">New Skill</span> - Words that are new to the student and are not in the student's vocabulary list.
             <br />
-            <span className="text-green-500">Previous Skill</span>
+            <span className="text-green-500">Previous Skill</span> - Words that are in the student's vocabulary list or have been previously assessed.
             <br />
-            <span className="text-blue-500">New High-Frequency</span>
+            <span className="text-blue-500">New High-Frequency</span> - Words that are new to the student and are in the student's vocabulary list.
             <br />
-            <span className="text-pink-500">Previous High-Frequency</span>
+            <span className="text-pink-500">Previous High-Frequency</span> - Words that are in the student's vocabulary list and have been previously assessed.
             <br />
-            <span className="text-amber-500">Photo / Context Aware</span>
+            <span className="text-amber-500">Photo / Context Aware</span> - Words that can be identified by the student based on the photo or context.
             <br />
-            <br />
+
           </p>
         </div>
         {book.json.pages.map((page, a) => (
@@ -60,7 +63,7 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
             <h2>
               Page {page.start}/{page.end}
             </h2>
-            <p>
+            <p className='select-none'>
               {page.lines.map((line, b) => (
                 <p key={b}>
                   {line.map((word, c) => (

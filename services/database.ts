@@ -1,9 +1,17 @@
 import { I_BookJSON } from '@Interfaces/books';
 
+
+
 import { PrismaClient } from '@prisma/client';
+
 
 export type UserRole = 'Admin' | 'Publisher' | 'Teacher';
 
+export interface Word {
+  id: number;
+  word: string;
+  selfCorrected: boolean;
+}
 export interface StruggleWord {
   id: number;
   count: number;
@@ -13,7 +21,7 @@ export interface StruggleWord {
     | 'New High-Frequency'
     | 'Previous High-Frequency'
     | 'Photo / Context Aware';
-  words: string[];
+  words: Word[];
   StudentProgress: StudentProgress;
 }
 

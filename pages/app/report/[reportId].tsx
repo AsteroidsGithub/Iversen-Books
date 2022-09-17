@@ -24,41 +24,55 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
           </>
         }
       />
-      <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
-      <ul>
-        <li>
-          Student: {report.student.firstName} {report.student.lastName}
-        </li>
-        <li>Book: {report.book.json.metadata.title}</li>
-        <li>Reading Level: {report.book.json.metadata.interventionLevel}</li>
-        <li>Date: {new Date(report.date).toLocaleDateString()}</li>
-        <li>Time: {new Date(report.time * 1000).toISOString().substring(14, 19)}</li>
-      </ul>
-      <h1 className=" pb-2 pt-4  text-2xl font-bold">Struggle Words</h1>
-      <ul>
-        {report.struggledWords?.map((struggleWord) => (
-          <li>
-            {struggleWord.value}:{struggleWord.words.flat().join(', ')}
-          </li>
-        ))}
-      </ul>
-      <h1 className=" pb-2 pt-4  text-2xl font-bold">Book Assessed</h1>
-      <div>
-        {report.book.json.pages.map((page, a) => (
-          <div key={a}>
-            <h2 className="select-none cursor-default">
-              Page {page.start}/{page.end}
-            </h2>
-            <p>
-              {page.lines.map((line, b) => (
-                <p key={b}>
-                  {line.map((word, c) => word.value + ' ')}
-                  <br />
+      <div className="grid md:grid-cols-2 px-4">
+        <section>
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
+          <ul>
+            <li>
+              <span className='font-medium text-lg'>Student:</span> {report.student.firstName} {report.student.lastName}
+            </li>
+            <li> <span className='font-medium text-lg'>Book:</span>{report.book.json.metadata.title}</li>
+            <li> <span className='font-medium text-lg'>Reading Level:</span> {report.book.json.metadata.interventionLevel}</li>
+            <li> <span className='font-medium text-lg'>Date:</span> {new Date(report.date).toLocaleDateString()}</li>
+            <li> <span className='font-medium text-lg'>Time:</span> {new Date(report.time * 1000).toISOString().substring(14, 19)}</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Errors</h1>
+          <ul>
+            <li>
+                <span className='font-medium text-lg'>Total Errors: {report.struggledWords?.flat()}</span><br/>
+              </li>
+            {report.struggledWords?.map((struggleWord) => (
+              <li>
+                <span className='font-medium text-lg'>{struggleWord.value}: {struggleWord.words.flat().length}</span><br/>
+                {struggleWord.words.flat().join(', ')}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className='md:col-span-2'>
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Book Assessed</h1>
+          <div>
+            {report.book.json.pages.map((page, a) => (
+              <div key={a}>
+                <h2 className="select-none cursor-default">
+                  Page {page.start}/{page.end}
+                </h2>
+                <p>
+                  {page.lines.map((line, b) => (
+                    <p key={b}>
+                      {line.map((word, c) => word.value + ' ')}
+                      <br />
+                    </p>
+                  ))}
                 </p>
-              ))}
-            </p>
+              </div>
+            ))}
           </div>
-        ))}
+        </section>
       </div>
     </>
   );
