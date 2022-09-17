@@ -38,44 +38,53 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
   return (
     <>
       <PillHeader student={student} />
-      <div>
-        <div>
-          <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key and Marking Instructions</h1>
-
+      <div className="grid h-full  lg:grid-cols-5 px-4 pb-4 lg:space-x-2">
+        <section>
           <p>
-            Click on a word for a student mistake, click again if the student self corrected the mistake. Words will highlight to the following key.
-            <br/>
-            <span className="text-red-500">New Skill</span> - Words that are new to the student and are not in the student's vocabulary list.
+            <h1 className=" pb-2 pt-4  text-2xl font-bold">Marking Instructions</h1>
+            Click on a word for a student mistake, click again if the student self corrected the
+            mistake. Words will highlight to the following key.
             <br />
-            <span className="text-green-500">Previous Skill</span> - Words that are in the student's vocabulary list or have been previously assessed.
+            <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key</h1>
+            <span className="text-red-500">New Skill</span> - Words that are new to the student and
+            are not in the student's vocabulary list.
             <br />
-            <span className="text-blue-500">New High-Frequency</span> - Words that are new to the student and are in the student's vocabulary list.
+            <span className="text-green-500">Previous Skill</span> - Words that are in the student's
+            vocabulary list or have been previously assessed.
             <br />
-            <span className="text-pink-500">Previous High-Frequency</span> - Words that are in the student's vocabulary list and have been previously assessed.
+            <span className="text-blue-500">New High-Frequency</span> - Words that are new to the
+            student and are in the student's vocabulary list.
             <br />
-            <span className="text-amber-500">Photo / Context Aware</span> - Words that can be identified by the student based on the photo or context.
+            <span className="text-pink-500">Previous High-Frequency</span> - Words that are in the
+            student's vocabulary list and have been previously assessed.
             <br />
-
+            <span className="text-amber-500">Photo / Context Aware</span> - Words that can be
+            identified by the student based on the photo or context.
+            <br />
           </p>
-        </div>
-        {book.json.pages.map((page, a) => (
-          <div key={a}>
-            <h2>
-              Page {page.start}/{page.end}
-            </h2>
-            <p className='select-none'>
-              {page.lines.map((line, b) => (
-                <p key={b}>
-                  {line.map((word, c) => (
-                    <Word index={c} word={word} />
-                  ))}
-                  <br />
-                </p>
-              ))}
-            </p>
-          </div>
-        ))}
+        </section>
+        <section className="lg:col-span-4">
+          <h1 className=" pb-2 pt-4  text-2xl font-bold">Book:</h1>
+          {book.json.pages.map((page, a) => (
+            <div key={a}>
+              <h2 className=' text-lg font-medium mb-1 mt-2'>
+                Page {page.start} - {page.end}
+              </h2>
+              <p className="select-none">
+                {page.lines.map((line, b) => (
+                  <p key={b}>
+                    {line.map((word, c) => (
+                      <Word index={c} word={word} />
+                    ))}
+                    <br />
+                  </p>
+                ))}
+              </p>
+            </div>
+          ))}
+        </section>
         <button
+          className="lg:col-span-5 h-fit self-end lg:col-start-1 text-white font-medium hover:bg-blue-600  rounded-sm bg-blue-500 py-2"
           onClick={() => {
             axios
               .post(`/api/${student.id}/postResults`, {
@@ -91,7 +100,7 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
               .then((data) => Router.push(`/app/report/${data.data.studentProgress.id}`));
           }}
         >
-          Submit
+          Finish Marking
         </button>
       </div>
     </>

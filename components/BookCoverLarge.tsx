@@ -8,7 +8,7 @@ const BookCoverLarge: React.FC<{ book: Book; classes: Class[] }> = ({ book, clas
 
   return (
     <div
-      className="flex shrink-0 snap-center flex-row border-2  border-slate-200 rounded  bg-white  hover:shadow cursor-pointer "
+      className="flex shrink-0  snap-center snap-always flex-row border-2  border-slate-200 rounded  bg-white  hover:shadow cursor-pointer "
       onClick={() => {
         setActiveModal(<StartReadingModal book={book} classes={classes} />);
       }}

@@ -10,7 +10,7 @@ const Header: React.FC<{ title: JSX.Element }> = ({ title }) => {
     <div className="sticky top-0 z-10 grid h-auto grid-cols-3 grid-rows-1 bg-white/90 px-2  shadow-lg backdrop-blur-3xl lg:grid-rows-1">
       <div className="col-span-2 col-start-1 row-start-1 justify-start self-center py-3 lg:col-span-1 ">
         <button
-          className="inline align-middle text-3xl"
+          className="inline align-middle text-3xl mr-1"
           onClick={() => {
             router.push('/app');
           }}

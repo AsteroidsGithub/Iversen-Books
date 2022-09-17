@@ -9,8 +9,8 @@ const TabHeader: React.FC<{ tabs: JSX.Element[] }> = ({ tabs }) => {
         Quick60
       </h1>
 
-      <div className="col-start-3 row-start-1 flex justify-end space-x-1 self-center py-3">
-        <h2 className="font-serif text-xl">
+      <div className=" col-start-2 col-span-2 md:col-span-1 md:col-start-3 row-start-1 flex justify-end space-x-1 self-center py-3">
+        <h2 className="font-serif text-xl text-right">
           Signed in as <span className=" font-bold text-gray-800">{user?.firstName}</span>
         </h2>
       </div>

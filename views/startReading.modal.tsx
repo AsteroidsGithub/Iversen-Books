@@ -12,17 +12,18 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
 
   return (
     <div>
-      <h1>Start a Report for {book.json.metadata.title}</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, nisi vel
-        consectetur euismod, nisi nisl aliquet nisl, eget consectetur nisl nisi vel nisl.
-      </p>
+      <h2 className="text-slate-900">
+          Level {book.json.metadata.interventionLevel} - {book.json.metadata.wordCount} Words - By {book.json.metadata.author}
+        </h2>
+      <h1 className='pb-2  text-2xl font-bold'>Start a Report for {book.json.metadata.title}</h1>
+      
+      <p>{book.json.metadata.description}<br/>Select a student from your classes to begin marking their reading performance</p>
       {/* Make two dropdown menus to select a student from a class */}
-      <div className="flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
-          <h2>Select a Class</h2>
+      <div className="flex flex-col py-2 space-y-1">
+        <div className="flex flex-col">
+          <h3 className='text-sm font-medium text-slate-800'>Select a Class</h3>
           <select
-            className="w-full"
+            className="w-full border-2 bg-gray-100 py-1 border-slate-200"
             value={selectedClass}
             onChange={(e) => setSelectedClass(Number(e.target.value))}
           >
@@ -34,10 +35,10 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
             ))}
           </select>
         </div>
-        <div className="flex flex-col items-center justify-center">
-          <h2>Select a Student</h2>
+        <div className="flex flex-col ">
+          <h3 className='text-sm font-medium text-slate-800'>Select a Student</h3>
           <select
-            className="w-full"
+            className="w-full border-2 bg-gray-100 py-1 border-slate-200"
             value={selectedStudent}
             onChange={(e) => setSelectedStudent(Number(e.target.value))}
           >
@@ -56,6 +57,7 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
       </div>
 
       <button
+        className='text-white font-medium hover:bg-blue-600 rounded-sm w-full bg-blue-500 py-2'
         onClick={(e) => {
           e.preventDefault();
           setActiveModal(null);

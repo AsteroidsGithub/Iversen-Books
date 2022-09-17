@@ -10,8 +10,8 @@ const ProgressReportList: React.FC<{
   const { setActiveModal } = useSharedState();
 
   return (
-    <div className="w-full">
-       <h1 className=" pb-2 pt-4 text-2xl font-bold">Reports for {student.firstName} {student.lastName}</h1>
+    <div className="w-full pb-2">
+       <h1 className=" pb-2 text-2xl font-bold">Reports for {student.firstName} {student.lastName}</h1>
       <h1>
         
       </h1>

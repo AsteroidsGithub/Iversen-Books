@@ -23,7 +23,10 @@ export default ({ Component, pageProps }: AppProps) => {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <ModalController>
+        <div className='flex flex-col h-screen w-screen'>
+
         <Component {...pageProps} />
+        </div>
       </ModalController>
     </>
   );

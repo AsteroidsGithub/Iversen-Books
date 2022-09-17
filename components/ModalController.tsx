@@ -11,7 +11,7 @@ const ModalController: React.FC<{}> = ({ children }) => {
             if (e.target === e.currentTarget) setActiveModal(null);
           }}
         >
-          <div className="z-10 mx-2 md:mx-8 flex h-fit w-full max-w-4xl flex-col items-center rounded border-2 border-gray-100 bg-white py-8 px-1 md:px-6 shadow-md ">
+          <div className="z-10 mx-2 md:mx-8 flex h-fit w-fit max-w-4xl flex-col items-center rounded border-2 border-gray-100 bg-white pb-2 pt-4 md:py-8 px-1 md:px-6 shadow-md ">
             {activeModal}
           </div>
         </div>
