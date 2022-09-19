@@ -1,4 +1,4 @@
-import landingPageImage from '@Public/images/login-head.png';
+import landingPageImage from '@Public/images/login-head.jpeg';
 import elenSpin from '@Public/images/spin.gif';
 
 import axios from 'axios';
@@ -49,27 +49,57 @@ const LoginPage: NextPage = () => {
                   <>
                     <p className="text-red-600">{formError}</p>
                     <label className="mt-2 block text-sm font-bold">First Name</label>
-                    <Field type="name" placeholder="First Name" name="firstName" />
+                    <Field
+                      type="name"
+                      placeholder="First Name"
+                      name="firstName"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="firstName" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Last Name</label>
-                    <Field type="name" placeholder="Last Name" name="lastName" />
+                    <Field
+                      type="name"
+                      placeholder="Last Name"
+                      name="lastName"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="lastName" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Email</label>
-                    <Field type="email" placeholder="Email" name="email" />
+                    <Field
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="email" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Confirm Email</label>
-                    <Field type="email" placeholder="Confirm Email" name="confirmEmail" />
+                    <Field
+                      type="email"
+                      placeholder="Confirm Email"
+                      name="confirmEmail"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="confirmEmail" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Password</label>
-                    <Field type="password" placeholder="Password" name="password" />
+                    <Field
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="password" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Confirm Password</label>
-                    <Field type="password" placeholder="Confirm Password" name="confirmPassword" />
+                    <Field
+                      type="password"
+                      placeholder="Confirm Password"
+                      name="confirmPassword"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="confirmPassword" component="div" className="text-red-500" />
 
                     <button
@@ -88,7 +118,10 @@ const LoginPage: NextPage = () => {
                     </button>
                   </>
                 ) : (
-                  <img className="h-auto w-fit" src={elenSpin.src}></img>
+                  <img
+                    className="h-auto w-12 self-center my-8 justify-center"
+                    src={elenSpin.src}
+                  ></img>
                 )}
               </Form>
             )}

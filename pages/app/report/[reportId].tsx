@@ -31,7 +31,7 @@ const Post: NextPage<{ user: User; report: StudentProgress }> = ({ user, report 
           </>
         }
       />
-      <div className="grid md:grid-cols-2 px-4 md:space-x-2">
+      <div className="grid md:grid-cols-2 px-4 ">
         <section>
           <h1 className=" pb-2 pt-4  text-2xl font-bold">Summary</h1>
           <ul>

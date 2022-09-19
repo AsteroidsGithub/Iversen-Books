@@ -9,9 +9,6 @@ const GCD: React.FC<{ numerator: number; denominator: number }> = ({ numerator, 
   const gcd = (a: number, b: number): number => (b ? gcd(b, a % b) : a);
   const gcdResult = gcd(numerator, denominator);
 
-  console.log(gcd(numerator, denominator));
-  console.log(numerator, denominator);
-  console.log(numerator / gcdResult, denominator / gcdResult);
   return (
     <span>
       <sup>{numerator / gcdResult}</sup>&frasl;<sub>{denominator / gcdResult}</sub>

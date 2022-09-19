@@ -43,10 +43,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    if (user)
+    if (value.email == value.confirmEmail)
       return res.status(401).json({
         statusCode: 401,
-        message: 'User Exists',
+        message: 'Email and Confirm Email do not match',
+      });
+    
+    if (value.password == value.confirmPassword)
+      return res.status(401).json({
+        statusCode: 401,
+        message: 'Password and Confirm Password do not match',
+      });
+
+    if (user)$
+      return res.status(401).json({
+        statusCode: 401,
+        message: 'This email already has an account',
       });
 
     console.log(value);

@@ -1,6 +1,8 @@
 import Word from '@Components/Word';
 import PillHeader from '@Components/headers/PillHeader';
 
+
+
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Student, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
@@ -46,28 +48,35 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
             mistake. Words will highlight to the following key.
             <br />
             <h1 className=" pb-2 pt-4  text-2xl font-bold">Color Key</h1>
-            <span className="text-red-500">New Skill</span> - Words that are new to the student and
-            are not in the student's vocabulary list.
-            <br />
-            <span className="text-green-500">Previous Skill</span> - Words that are in the student's
-            vocabulary list or have been previously assessed.
-            <br />
-            <span className="text-blue-500">New High-Frequency</span> - Words that are new to the
-            student and are in the student's vocabulary list.
-            <br />
-            <span className="text-pink-500">Previous High-Frequency</span> - Words that are in the
-            student's vocabulary list and have been previously assessed.
-            <br />
-            <span className="text-amber-500">Photo / Context Aware</span> - Words that can be
-            identified by the student based on the photo or context.
-            <br />
+            <ul className="space-y-1">
+              <li>
+                <span className="text-red-500">New Skill</span> - Words that are new to the student
+                and are not in the student's vocabulary list.
+              </li>
+              <li>
+                <span className="text-green-500">Previous Skill</span> - Words that are in the
+                student's vocabulary list or have been previously assessed.
+              </li>
+              <li>
+                <span className="text-blue-500">New High-Frequency</span> - Words that are new to
+                the student and are in the student's vocabulary list.
+              </li>
+              <li>
+                <span className="text-pink-500">Previous High-Frequency</span> - Words that are in
+                the student's vocabulary list and have been previously assessed.
+              </li>
+              <li>
+                <span className="text-amber-500">Photo / Context Aware</span> - Words that can be
+                identified by the student based on the photo or context.
+              </li>
+            </ul>
           </p>
         </section>
         <section className="lg:col-span-4">
           <h1 className=" pb-2 pt-4  text-2xl font-bold">Book:</h1>
           {book.json.pages.map((page, a) => (
             <div key={a}>
-              <h2 className=' text-lg font-medium mb-1 mt-2'>
+              <h2 className=" text-lg font-medium mb-1 mt-2">
                 Page {page.start} - {page.end}
               </h2>
               <p className="select-none">
@@ -97,7 +106,10 @@ const Post: NextPage<{ user: User; book: Book; student: Student }> = ({ user, bo
                 })),
                 time: timeElapsed,
               })
-              .then((data) => Router.push(`/app/report/${data.data.studentProgress.id}`));
+              .then((data) => {
+                setTimeElapsed(0);
+                Router.push(`/app/report/${data.data.studentProgress.id}`);
+              });
           }}
         >
           Finish Marking

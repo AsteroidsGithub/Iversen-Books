@@ -23,7 +23,7 @@ const ProgressReportList: React.FC<{
             <th className='text-left px-2 py-2'>Level</th>
             <th className='text-left px-2 py-2'>Date</th>
             <th className='text-left px-2 py-2'>Time</th>
-            <th className='text-left px-2 py-2'>Struggled words</th>
+            <th className='text-left px-2 py-2'>Errors</th>
           </tr>
         </thead>
         <tbody>
@@ -42,8 +42,12 @@ const ProgressReportList: React.FC<{
               <td>{new Date(progress.time * 1000).toISOString().substring(14, 19)}</td>
               <td>
                 {progress.struggledWords
-                  .map((struggleWord) => struggleWord.words)
-                  .flat().length}
+                    .flat()
+                    .map((word) => word.words.length)
+                    .reduce((a, b) => a + b, 0)} ({progress.struggledWords
+                    .flat()
+                    .map((word) => word.words.filter((w) => w.selfCorrected).length)
+                    .reduce((a, b) => a + b, 0)} Corrected)
               </td>
             </tr>
           ))}

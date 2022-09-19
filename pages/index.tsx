@@ -1,4 +1,4 @@
-import landingPageImage from '@Public/images/login-head.png';
+import landingPageImage from '@Public/images/login-head.jpeg';
 import elenSpin from '@Public/images/spin.gif';
 
 import axios from 'axios';
@@ -45,11 +45,21 @@ const LoginPage: NextPage = () => {
                     <p className="text-red-600">{formError}</p>
 
                     <label className="mt-2 block text-sm font-bold">Email</label>
-                    <Field type="email" placeholder="Email" name="email" />
+                    <Field
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="email" component="div" className="text-red-500" />
 
                     <label className="mt-2 block text-sm font-bold">Password</label>
-                    <Field type="password" placeholder="Password" name="password" />
+                    <Field
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      className="border-2 bg-gray-100 py-1 border-slate-200"
+                    />
                     <ErrorMessage name="password" component="div" className="text-red-500" />
 
                     <button
@@ -68,7 +78,10 @@ const LoginPage: NextPage = () => {
                     </button>
                   </>
                 ) : (
-                  <img className="h-auto w-fit" src={elenSpin.src}></img>
+                  <img
+                    className="h-auto w-12 self-center my-8 justify-center"
+                    src={elenSpin.src}
+                  ></img>
                 )}
               </Form>
             )}

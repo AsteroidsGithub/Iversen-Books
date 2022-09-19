@@ -3,12 +3,17 @@ import BooksTab from '@Views/books.tab';
 import PublishTab from '@Views/publish.tab';
 import StudentsTab from '@Views/students.tab';
 
+
+
 import useSharedState from '@Middleware/useSharedState';
 import prisma, { Book, Class, User } from '@Services/database';
 import checkAuth from '@Utilities/checkAuth';
 
+
+
 import type { GetServerSideProps, NextPage } from 'next';
 import React from 'react';
+
 
 const HomePage: NextPage<{ user: User; books: Book[]; classes: Class[] }> = ({
   user,
@@ -54,7 +59,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
               studentProgress: {
                 include: {
                   book: true,
-                  struggledWords: true,
+                  struggledWords: {
+                    include: {
+                      words: true,
+                    },
+                  },
                 },
               },
             },

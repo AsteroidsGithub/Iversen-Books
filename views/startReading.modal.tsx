@@ -47,7 +47,7 @@ const StartReadingModal: React.FC<{ book: Book; classes: Class[] }> = ({ book, c
               : 
                 classes[selectedClass].students.map((c, i) => (
               <option key={i} value={c.id}>
-                {c.firstName}
+                {c.firstName} {c.lastName}
               </option>
             ))
             

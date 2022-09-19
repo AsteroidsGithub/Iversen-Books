@@ -13,7 +13,7 @@ const BookCover: React.FC<{ book: Book; classes: Class[] }> = ({ book, classes }
         setActiveModal(<StartReadingModal book={book} classes={classes} />);
       }}
     >
-      <img src={book.json.refs.coverArt} alt="book cover" className="w-full " />
+      <img src={book.json.refs.coverArt} alt={`Book Cover - ${book.json.metadata.title}`} className="w-full " />
       <h2 className="text-center font-bold py-1">{book.json.metadata.title}</h2>
       <h3 className="text-center">
         <span>Level {book.json.metadata.interventionLevel}</span>・
