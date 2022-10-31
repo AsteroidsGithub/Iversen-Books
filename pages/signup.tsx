@@ -38,6 +38,7 @@ const LoginPage: NextPage = () => {
                 })
                 .catch((err) => {
                   console.log(err);
+                  console.log(err.message)
                   setFormError(err.response.data.message || 'Something went wrong');
                   setSubmitting(false);
                 });

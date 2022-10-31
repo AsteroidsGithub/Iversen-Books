@@ -1,6 +1,7 @@
 import PrismaClient, { UserRole } from '@Services/database';
 import loginUser from '@Utilities/loginUser';
 
+import bcrypt from 'bcrypt';
 import Joi from 'joi';
 import { NextApiRequest, NextApiResponse } from 'next';
 
@@ -34,6 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       console.error(error);
       return res.status(500).json({ statusCode: 500, message: error.details[0].message });
     }
+
     const user = await PrismaClient.user.findUnique({
       where: {
         email: value.email,
@@ -43,32 +45,32 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    if (value.email == value.confirmEmail)
+    if (value.email != value.confirmEmail)
       return res.status(401).json({
         statusCode: 401,
         message: 'Email and Confirm Email do not match',
       });
-    
-    if (value.password == value.confirmPassword)
+
+    if (value.password != value.confirmPassword)
       return res.status(401).json({
         statusCode: 401,
         message: 'Password and Confirm Password do not match',
       });
 
-    if (user)$
+    if (user)
       return res.status(401).json({
         statusCode: 401,
         message: 'This email already has an account',
       });
 
-    console.log(value);
+    // const hashedPassword = await bcrypt.hash(value.password, 10);
 
     const newUser = await PrismaClient.user.create({
       data: {
         firstName: value.firstName,
         lastName: value.lastName,
         email: value.email,
-        password: value.password, // TODO: Encrypt this before production
+        password: await bcrypt.hash(value.password, 10), // TODO: Encrypt this before production
       },
       select: {
         id: true,

@@ -16,11 +16,11 @@ export interface StruggleWord {
   id: number;
   count: number;
   value:
-    | 'New Skill'
-    | 'Previous Skill'
-    | 'New High-Frequency'
-    | 'Previous High-Frequency'
-    | 'Photo / Context Aware';
+  | 'New Skill'
+  | 'Previous Skill'
+  | 'New High-Frequency'
+  | 'Previous High-Frequency'
+  | 'Photo / Context Aware';
   words: Word[];
   StudentProgress: StudentProgress;
 }
@@ -62,8 +62,11 @@ export interface User {
   lastName: string;
   email: string;
   password: string;
+
   permissions: UserRole;
   classes: Class[];
 }
 
-export default new PrismaClient();
+const prisma = new PrismaClient();
+
+export default prisma;

@@ -2,6 +2,8 @@ import PrismaClient from '@Services/database';
 import loginUser from '@Utilities/loginUser';
 
 import Joi from 'joi';
+import bcrypt from 'bcrypt';
+
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const validateLoginData = (user: { email: string; password: string }) =>
@@ -36,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (!user) return res.status(404).json({ statusCode: 404, message: 'User Not Found' });
 
     // Replace me with bycrpt to hash passwords
-    if (value.password != user.password)
+    if (await bcrypt.compare(value.password, user.password) != true)
       return res.status(401).json({ statusCode: 401, message: 'Invalid Password' });
 
     const { token, exp } = await loginUser(res, user.id);

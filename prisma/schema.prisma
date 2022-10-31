@@ -22,11 +22,12 @@ enum wordLevel {
 }
 
 model User {
-  id          Int      @id @default(autoincrement())
-  firstName   String
-  lastName    String
-  email       String   @unique
-  password    String
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String @unique
+  password  String
+
   permissions UserRole @default(Teacher)
   classes     Class[]
 }
